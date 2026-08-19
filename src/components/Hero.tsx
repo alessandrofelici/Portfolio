@@ -47,22 +47,24 @@ export function Hero() {
 }
 
 /**
- * Monogram tile sitting on the signature offset yellow block.
+ * Portrait sitting on the signature offset yellow block.
  *
- * The Figma source used a photograph here. To swap one in, drop the file in
- * public/ and replace the inner <div> with an <img> of the same fixed size:
- * keep `relative`, the 300x380 box, and the offset block behind it.
+ * The image is pre-cropped to the 300x380 box at 2x (600x760), so no art
+ * direction is needed here. To swap it, replace the file in public/images/ and
+ * update `profile.portrait`: keep the fixed box and the offset block behind it.
  */
 function Portrait() {
   return (
     <div className="flex items-start justify-center lg:justify-end">
       <div className="relative">
         <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-sharp bg-yellow" />
-        <div className="relative flex h-[380px] w-[300px] items-center justify-center rounded-sharp border border-line bg-cream-dark">
-          <span className="font-display text-[7rem] leading-none font-light tracking-display text-ink">
-            {profile.initials}
-          </span>
-        </div>
+        <img
+          src={profile.portrait}
+          alt={profile.portraitAlt}
+          width={300}
+          height={380}
+          className="relative block h-[380px] w-[300px] rounded-sharp border border-line bg-cream-dark object-cover"
+        />
       </div>
     </div>
   )

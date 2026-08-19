@@ -51,10 +51,10 @@ export function ResumeModal({ onClose }: { onClose: () => void }) {
           <div className="flex items-center gap-3">
             <a
               href={profile.resumeFile}
-              download
+              download={profile.resumeFileName}
               className="rounded-sharp bg-yellow px-3 py-1.5 text-xs font-medium text-ink transition-opacity hover:opacity-80"
             >
-              Download
+              Download PDF
             </a>
             <button
               onClick={onClose}

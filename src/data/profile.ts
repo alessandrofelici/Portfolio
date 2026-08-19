@@ -30,6 +30,14 @@ export const profile = {
   summary:
     'Computer science student at Michigan State University with internship experience across full-stack product work, cloud infrastructure, and ML platform engineering. Comfortable owning a feature end to end: authentication, API, deployment, and the tests that keep it standing.',
 
-  /** Served from public/. Swap for a PDF and update this one constant. */
-  resumeFile: '/experience.md',
+  /** Hero portrait. 600x760 (2x the 300x380 display box), served from public/. */
+  portrait: '/images/SanMarinoHeadshotCropped.jpg',
+  portraitAlt: 'Alessandro Felici',
+
+  /** Served from public/documents/. The only reference to the resume file. */
+  resumeFile: '/documents/Alessandro_Felici_Resume.pdf',
+  /** Filename the browser saves it as via the Download button. */
+  resumeFileName: 'Alessandro_Felici_Resume.pdf',
+  /** Short label for the link beside the Work History heading. */
+  resumeFileLabel: 'resume.pdf',
 } as const

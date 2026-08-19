@@ -30,7 +30,8 @@ below were lifted from the Make file's `@theme` block and its inline styles.
 
 **Content source of truth is separate:** all resume material comes from `~/resume/sections/*.md`
 (and `~/resume/master_doc.tex` for the contact header). When the resume changes, update
-`src/data/*.ts` and `public/experience.md`: never hardcode content into components.
+`src/data/*.ts` and re-export the PDF into `public/documents/`: never hardcode content into
+components.
 
 ---
 
@@ -198,9 +199,26 @@ Two conventions worth knowing:
   from the original design. When absent, it falls back to a muted date range. Adding repo URLs
   restores the yellow accent across the project grid.
 
-`public/experience.md` is the downloadable resume served at `/experience.md`. To ship a PDF
-instead, drop it in `public/` and change `profile.resumeFile`: that constant is the only
-reference.
+### Static assets in `public/`
+
+Everything under `public/` is copied to the build root verbatim and ships to the browser, so
+keep it small and keep full-resolution originals out of it.
+
+| Path | Served at | Referenced by |
+|---|---|---|
+| `public/documents/Alessandro_Felici_Resume.pdf` | `/documents/…` | `profile.resumeFile` |
+| `public/images/SanMarinoHeadshotCropped.jpg` | `/images/…` | `profile.portrait` |
+
+The resume PDF is reached from exactly two places, both through `profile.resumeFile`: the
+`resume.pdf` link beside the Work History heading, and the Download button in the resume modal.
+`profile.resumeFileName` sets the saved filename, `profile.resumeFileLabel` the link text.
+Swapping the resume means replacing the file and updating those constants: nothing else
+references it.
+
+**Portraits are pre-cropped, not art-directed in CSS.** The hero image is exported at exactly
+2x the 300x380 display box (600x760) and cover-cropped to that aspect ratio before it lands in
+`public/images/`, so the markup needs no `object-position` tuning. Resize replacements the same
+way rather than shipping a multi-megabyte original and letting the browser scale it.
 
 ---
 
@@ -213,7 +231,7 @@ don't "fix" them back.
 |---|---|---|
 | Inline `style={{ color: "#0C0C0C" }}` on every element | Tailwind token utilities | Hex scattered across JSX can't be themed or audited |
 | Fixed `gridTemplateColumns: "1fr 340px"` | `lg:grid-cols-[1fr_340px]`, stacks below `lg` | The original had no responsive behavior at all |
-| Portrait from an Unsplash URL | Monogram tile on the yellow offset block | Placeholder stock photo of a stranger. Swap in a real photo per the note in `Hero.tsx` |
+| Portrait from an Unsplash URL | Real headshot, pre-cropped to 600x760 and served from `public/images/` | Placeholder stock photo of a stranger; a remote URL is also a runtime dependency on a third party |
 | `::-webkit-scrollbar { width: 0 }` | 8px thumb in `border-line` | Hiding the scrollbar broke the scrollable resume modal |
 | Modal closes on backdrop click only | Also Escape, plus body scroll lock and `role="dialog"` | Basic modal accessibility |
 | Sections: Projects + Work History | Adds Education, Skills, Leadership, Volunteering | The resume has more material than the mock covered: built from the same Card/Tag recipes |

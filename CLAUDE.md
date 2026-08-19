@@ -16,10 +16,16 @@ Figma source of truth, and the rules that keep the visual system coherent. The s
 ## Content
 
 All copy and resume data lives in `src/data/*.ts`, sourced from `~/resume/sections/*.md`.
-Components render data: they never hardcode content. The downloadable resume is
-`public/experience.md`, referenced through `profile.resumeFile`.
+Components render data: they never hardcode content.
 
-When the resume changes, update both `src/data/*.ts` and `public/experience.md`.
+Static assets ship from `public/` and are referenced only through `src/data/profile.ts`:
+
+- `public/documents/Alessandro_Felici_Resume.pdf` → `profile.resumeFile`
+- `public/images/SanMarinoHeadshotCropped.jpg` → `profile.portrait` (pre-cropped to 600x760)
+
+When the resume changes, update `src/data/*.ts` and drop the newly built PDF into
+`public/documents/`. Keep multi-megabyte originals out of `public/`: everything there is
+served to the browser.
 
 ## Commands
 
@@ -41,5 +47,6 @@ src/
     icons.tsx        SVGs ported from Figma; currentColor, size prop
     Nav / Hero / Projects / WorkHistory / About / Footer / ResumeModal
   data/              profile, experience, projects, education, skills, leadership
-public/experience.md downloadable resume
+public/documents/     resume PDF
+public/images/        hero portrait
 ```

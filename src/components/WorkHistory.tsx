@@ -16,7 +16,7 @@ export function WorkHistory() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-xs font-medium transition-opacity hover:opacity-60"
             >
-              experience.md <ExternalIcon />
+              {profile.resumeFileLabel} <ExternalIcon />
             </a>
           }
         />

@@ -30,11 +30,10 @@ npm run typecheck  # tsc --noEmit
   system. Read it before writing UI code.
 - **[CLAUDE.md](./CLAUDE.md)**: orientation for AI agents working in the repo.
 
-Content lives in `src/data/*.ts`, not in components. The downloadable resume is
-`public/experience.md`.
+Content lives in `src/data/*.ts`, not in components. The resume PDF and hero portrait ship
+from `public/`, referenced through `src/data/profile.ts`.
 
 ## Before it goes live
 
-- [ ] Swap the hero monogram for a real photo (see the note in `src/components/Hero.tsx`)
 - [ ] Add `repo` URLs to entries in `src/data/projects.ts` to bring back the yellow GitHub pills
-- [ ] Optionally replace `public/experience.md` with a PDF and update `profile.resumeFile`
+- [ ] Re-export the resume PDF into `public/documents/` whenever `~/resume` changes
