@@ -116,10 +116,16 @@ Eyebrows and uppercase labels use `tracking-widest` + `uppercase` + `text-ink-mu
 | Token | Utility | Value |
 |---|---|---|
 | `--radius-sharp` | `rounded-sharp` | `2px` |
+| `--radius-pill` | `rounded-pill` | `999px` |
 
 **One radius, everywhere.** Cards, buttons, tags, the modal, the portrait block. The design is
-deliberately near-square and editorial; `rounded-lg`, `rounded-full`, and pill shapes are off the
-table. Borders are always exactly `1px` `border-line`; there are no shadows anywhere in the
+deliberately near-square and editorial; `rounded-lg`, `rounded-full`, and ad-hoc pill shapes are
+off the table.
+
+`rounded-pill` is the **single sanctioned exception**, and it exists for exactly one element:
+the nav search field, which is a pill in the Figma source. It is deliberate contrast, not a
+loosening of the rule: the one round thing on the page is the one thing you type into. Do not
+reach for it anywhere else. Borders are always exactly `1px` `border-line`; there are no shadows anywhere in the
 system: depth comes from the paper-on-cream contrast and the hairline border.
 
 ### Layout
@@ -132,16 +138,31 @@ system: depth comes from the paper-on-cream contrast and the hairline border.
 
 ### Motion
 
-Restrained and short. Only four moves exist:
+Restrained and short. Four **interaction** moves exist, all `duration-200`, all a transform or
+opacity change:
 
 - `transition-transform duration-200 hover:-translate-y-0.5`: card lift
 - `transition-opacity hover:opacity-60` / `hover:opacity-80`: links and ghost buttons
 - `active:scale-95`: primary button press
 - `transition-transform duration-200 hover:scale-110`: company logo grow
 
-Everything shares `duration-200` and a transform or opacity change: nothing animates color,
-size, or layout. No entrance animations, no scroll-triggered reveals, no parallax.
-Don't add them.
+Nothing animates color, size, or layout. No entrance animations, no scroll-triggered reveals,
+no parallax. Don't add them.
+
+Separately, the **search field** carries the only three keyframe animations in the system, all
+ported from the Figma source and all tokenized in `@theme`:
+
+| Token | Utility | What |
+|---|---|---|
+| `--animate-search-ring` | `animate-search-ring` | the "SEARCH SKILLS" ring turning, 12s linear |
+| `--animate-hint-in` | `animate-hint-in` | cycling skill flips in, 0.36s |
+| `--animate-hint-out` | `animate-hint-out` | cycling skill flips out, 0.32s |
+
+These are ambient rather than reactive: they run without input, which is exactly what the rest
+of the system forbids. They are confined to the search field, and **every one is applied through
+`motion-safe:`**, with the JS cycle timer switched off under `prefers-reduced-motion` too, so
+the whole bar goes still. Any new keyframe animation needs the same treatment or it does not
+belong here.
 
 ---
 
@@ -161,11 +182,12 @@ class strings.** If you need a variant, extend the primitive rather than copying
 <GhostButton>          // outlined button on cream, for real actions
 ```
 
-**The nav is a monogram and one action.** It carries `profile.initials` set in italic
-`font-display` — echoing the hero's italic surname — plus the Resume button, and nothing else.
-Section links were removed: the page is short enough to scan, and a fixed bar competing with
-the hero for attention cost more than it gave. The monogram links to `#top`; a "Back to top"
-`GhostButton` closes the page in the footer.
+**The nav is a monogram, one action, and search.** It carries `profile.initials` set in italic
+`font-display` — echoing the hero's italic surname — the Resume button, and the search field,
+and nothing else. Section links were removed: the page is short enough to scan, and a fixed bar
+competing with the hero for attention cost more than it gave. Search earns its slot because it
+does something links cannot — narrow the page rather than jump around it. The monogram clears
+the query and scrolls to the top; a "Back to top" `GhostButton` closes the page in the footer.
 
 Raw equivalents, for reference:
 
@@ -190,7 +212,15 @@ pull it from a licensed set, then add it to this file with the same `currentColo
 
 ## 5. Content architecture
 
-Components render; they do not own content. All copy and data lives in `src/data/`:
+Components render; they do not own content. All copy and data lives in `src/data/`, and the
+one piece of non-component logic — the search index — lives in `src/lib/`:
+
+- `src/lib/search.ts` flattens every record to strings and matches all query terms against it.
+  It is the **only** place that decides what is searchable: adding a field to `src/data/` does
+  not make it findable until it is listed there.
+- `src/lib/usePrefersReducedMotion.ts` gates the search placeholder's JS cycle timer.
+
+
 
 | File | Holds | Resume source |
 |---|---|---|
@@ -274,18 +304,24 @@ don't "fix" them back.
 | Sections: Projects + Work History | Adds Education, Skills, Leadership, Volunteering | The resume has more material than the mock covered: built from the same Card/Tag recipes |
 | `--color-white`, `--color-border` | `--color-paper`, `--color-line` | Avoids shadowing Tailwind built-ins and `border-border` |
 | Placeholder persona ("Alex Rivera") | Real content from `~/resume/sections/` |: |
+| Search bar is a `<div>` with `cursor: text` and no input | A real `<input>` that filters the page as you type | The mock advertised a search that did not exist; it looked clickable and did nothing |
+| Icon toggle button switching ring ⇄ magnifying glass | Ring only, no toggle | That toggle was a design A/B in the preview, not a feature. The ring won |
+| Ring `viewBox="0 0 60 60"` | `viewBox="-4 -4 68 68"` | Glyphs sit *outside* the path they follow, so at r=25 the letters hit the box edge and were shaved off. Padding the box keeps the 157.08 circumference the label is fitted to |
+| Cycling chip on `#EDE8DA` | `<Tag>` on `cream-dark` (`#f0ebd8`) | Off-palette hex two shades from a token we already had |
+| Hardcoded `SKILL_OPTIONS` array in the component | `searchHints` in `src/data/skills.ts` | Content belongs in `src/data/`, and the hints must stay a subset of the real skills |
 
 ---
 
 ## 7. Rules for future changes
 
 1. **No raw hex, rgb, or arbitrary color values in components.** Add a token to `@theme` first.
-2. **One radius.** `rounded-sharp` or nothing.
+2. **One radius.** `rounded-sharp` or nothing: `rounded-pill` is spoken for by the search field.
 3. **One accent.** Yellow, used sparingly. No second accent hue, no gradients.
 4. **Reuse `src/components/ui.tsx`.** New card-like surface? Compose `<Card>`.
 5. **Fraunces for display only.** Body text is always Work Sans.
 6. **Content goes in `src/data/`**, sourced from `~/resume/sections/`.
-7. **No new motion** beyond the three moves in § 3.
+7. **No new motion** beyond the moves in § 3. Keyframe animation is confined to the search
+   field, and anything ambient must be gated behind `motion-safe:`.
 8. **Borders are 1px `border-line`. Shadows do not exist** in this system.
 9. When pulling from Figma again, re-read the Make source files (§ 1) rather than guessing:
    and update this document if the tokens moved.

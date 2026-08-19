@@ -1,5 +1,5 @@
 import type { Job } from '../data/experience'
-import { jobs } from '../data/experience'
+import { jobs as allJobs } from '../data/experience'
 import { profile } from '../data/profile'
 import { ExternalIcon } from './icons'
 import { Card, Container, SectionHeading, Tag } from './ui'
@@ -41,21 +41,28 @@ function CompanyLogo({ job }: { job: Job }) {
   )
 }
 
-export function WorkHistory() {
+/** `jobs` is the filtered slice from the nav search: the full list when idle. */
+export function WorkHistory({ jobs }: { jobs: Job[] }) {
+  const filtered = jobs.length !== allJobs.length
+
   return (
     <section id="experience" className="scroll-mt-24 py-20">
       <Container>
         <SectionHeading
           title="Work History"
           note={
-            <a
-              href={profile.resumeFile}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-medium transition-opacity hover:opacity-60"
-            >
-              {profile.resumeFileLabel} <ExternalIcon />
-            </a>
+            filtered ? (
+              `${jobs.length} of ${allJobs.length}`
+            ) : (
+              <a
+                href={profile.resumeFile}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-medium transition-opacity hover:opacity-60"
+              >
+                {profile.resumeFileLabel} <ExternalIcon />
+              </a>
+            )
           }
         />
 
