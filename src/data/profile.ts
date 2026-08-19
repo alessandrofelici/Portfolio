@@ -39,5 +39,5 @@ export const profile = {
   /** Filename the browser saves it as via the Download button. */
   resumeFileName: 'Alessandro_Felici_Resume.pdf',
   /** Short label for the link beside the Work History heading. */
-  resumeFileLabel: 'resume.pdf',
+  resumeFileLabel: 'See my full resume',
 } as const

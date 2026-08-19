@@ -189,7 +189,7 @@ Components render; they do not own content. All copy and data lives in `src/data
 |---|---|---|
 | `profile.ts` | Name, contact links, hero intro, resume summary | `master_doc.tex` header |
 | `experience.ts` | Jobs: `summary` for cards; `highlights` currently unrendered | `sections/experiences.md` |
-| `projects.ts` | Projects, newest first. Optional `repo` field | `sections/projects.md` |
+| `projects.ts` | Projects, newest first. Optional `repo` / `paper` link | `sections/projects.md` |
 | `education.ts` | Degree, GPA, coursework | `sections/education.md` |
 | `skills.ts` | Skill groups | `sections/technical-skills.md` |
 | `leadership.ts` | Organizations + volunteering | `sections/organizations.md`, `volunteering.md` |
@@ -205,9 +205,14 @@ Two conventions worth knowing:
 - **`summary` vs `highlights`.** Cards on the page show a single flowing `summary` paragraph.
   `highlights` is retained structured source material and is currently rendered nowhere;
   editing it changes nothing on the page.
-- **`Project.repo` is optional.** When present, the card header renders the yellow GitHub pill
-  from the original design. When absent, it falls back to a muted date range. Adding repo URLs
-  restores the yellow accent across the project grid.
+- **A project carries at most one outbound link.** `repo` renders the yellow GitHub pill from
+  the original design; `paper` renders the same pill with a "PDF" label for work whose artifact
+  is a document rather than a repository. Both open in a new tab, and a project with neither
+  renders no pill. `repo` wins if somehow both are set. The card header always shows the title
+  and dates, so the pill is purely additive.
+- **Not every entry belongs in Work History.** Research and coursework projects live in
+  `projects.ts` even when they were done through an institution: Work History is for roles at
+  an employer. That is why "Proving in AI" is a project with a `paper`, not a job.
 
 ### Static assets in `public/`
 
@@ -217,9 +222,13 @@ keep it small and keep full-resolution originals out of it.
 | Path | Served at | Referenced by |
 |---|---|---|
 | `public/documents/Alessandro_Felici_Resume.pdf` | `/documents/…` | `profile.resumeFile` |
+| `public/documents/CSE-260-Honors-Project-Report.pdf` | `/documents/…` | `Project.paper` in `projects.ts` |
 | `public/images/SanMarinoHeadshotCropped.jpg` | `/images/…` | `profile.portrait` |
 | `public/images/Orange.png` | `/images/…` | `index.html` favicon + apple-touch-icon |
 | `public/images/{aps,alchemy,Auto-Owners}.png` | `/images/…` | `Job.logo` in `experience.ts` |
+
+**Keep asset filenames URL-safe** (no spaces, no punctuation beyond `-` and `_`): these become
+public URLs, and a space has to be percent-encoded everywhere it is referenced.
 
 Company logos are square (200x200), rendered at 48px in the Work History cards. `Job.logo` and
 `Job.linkedin` are both optional: an entry without a logo renders none and the text reflows,
