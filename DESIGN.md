@@ -325,3 +325,8 @@ don't "fix" them back.
 8. **Borders are 1px `border-line`. Shadows do not exist** in this system.
 9. When pulling from Figma again, re-read the Make source files (§ 1) rather than guessing:
    and update this document if the tokens moved.
+
+## TEMP NOTE
+Errors with this feature branch:
+- After searching for text and erasing it, the images don't seem to load properly.
+- Not a bug, but currently it just searches for text. What I had in mind was to find certain skills, and maybe show the preset skills as you're searching for it.
