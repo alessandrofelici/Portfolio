@@ -33,7 +33,7 @@ export function ResumeModal({ onClose }: { onClose: () => void }) {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={`Resume — ${profile.name}`}
+      aria-label={`Resume: ${profile.name}`}
       className="fixed inset-0 z-50 flex items-center justify-center bg-ink/70 p-4 backdrop-blur-sm sm:p-6"
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose()
@@ -103,7 +103,7 @@ export function ResumeModal({ onClose }: { onClose: () => void }) {
                   <div key={`${job.company}-${job.period}`}>
                     <div className="mb-1 flex items-baseline justify-between gap-4">
                       <span className="text-sm font-semibold text-ink">
-                        {job.role} — {job.company}
+                        {job.role}: {job.company}
                       </span>
                       <span className="shrink-0 text-xs text-ink-muted">{job.period}</span>
                     </div>
@@ -154,7 +154,7 @@ export function ResumeModal({ onClose }: { onClose: () => void }) {
                   <div key={org.name}>
                     <div className="flex items-baseline justify-between gap-4">
                       <span className="text-sm font-semibold text-ink">
-                        {org.role} — {org.name}
+                        {org.role}: {org.name}
                       </span>
                       <span className="shrink-0 text-xs text-ink-muted">{org.period}</span>
                     </div>

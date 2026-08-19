@@ -1,4 +1,4 @@
-# Design System — Portfolio
+# Design System: Portfolio
 
 **Read this before writing any UI code in this repo.** It is the contract between the Figma
 design and the code. Everything here is enforceable by reading `src/index.css` and
@@ -13,7 +13,7 @@ design and the code. Everything here is enforceable by reading `src/index.css` a
 | **Figma file** | Personal website design (Figma Make) |
 | **URL** | https://www.figma.com/make/gesOYyUtfe2Yibc8g7fuR4/Personal-website-design |
 | **File key** | `gesOYyUtfe2Yibc8g7fuR4` |
-| **Type** | Figma **Make** file — the design *is* a React + Vite + Tailwind v4 app, not a canvas of frames |
+| **Type** | Figma **Make** file: the design *is* a React + Vite + Tailwind v4 app, not a canvas of frames |
 
 Because it is a Make file, its source is read with the Figma MCP tools like this:
 
@@ -25,12 +25,12 @@ get_design_context(fileKey: "gesOYyUtfe2Yibc8g7fuR4", nodeId: "0:1")
 ```
 
 `get_metadata`, `get_screenshot`, and `get_variable_defs` do **not** work on `/make/` URLs.
-There are no Figma variables or published component libraries backing this design — the tokens
+There are no Figma variables or published component libraries backing this design: the tokens
 below were lifted from the Make file's `@theme` block and its inline styles.
 
 **Content source of truth is separate:** all resume material comes from `~/resume/sections/*.md`
 (and `~/resume/master_doc.tex` for the contact header). When the resume changes, update
-`src/data/*.ts` and `public/experience.md` — never hardcode content into components.
+`src/data/*.ts` and `public/experience.md`: never hardcode content into components.
 
 ---
 
@@ -38,7 +38,7 @@ below were lifted from the Make file's `@theme` block and its inline styles.
 
 - **React 19** + **TypeScript** (strict)
 - **Vite 7**
-- **Tailwind CSS v4** via `@tailwindcss/vite` — no `tailwind.config.js`, no PostCSS config.
+- **Tailwind CSS v4** via `@tailwindcss/vite`: no `tailwind.config.js`, no PostCSS config.
   All theming lives in the `@theme` block of `src/index.css`.
 - `@/*` path alias → `./src/*`
 
@@ -58,9 +58,9 @@ automatically. **Never write a raw hex value in a component.**
 |---|---|---|---|
 | `--color-cream` | `bg-cream` | `#F9F6EE` | Page background, nav background |
 | `--color-cream-dark` | `bg-cream-dark` | `#F0EBD8` | Tag/chip fills, inset surfaces |
-| `--color-paper` | `bg-paper` | `#FFFFFF` | Cards, modal sheet — anything raised off the page |
+| `--color-paper` | `bg-paper` | `#FFFFFF` | Cards, modal sheet: anything raised off the page |
 | `--color-yellow` | `bg-yellow` | `#F5C400` | The accent. Primary button, portrait offset block, resume rule, selection |
-| `--color-yellow-light` | `bg-yellow-light` | `#FFF3A3` | Reserved — softer accent, currently unused |
+| `--color-yellow-light` | `bg-yellow-light` | `#FFF3A3` | Reserved: softer accent, currently unused |
 | `--color-ink` | `text-ink` | `#0C0C0C` | Headings, primary text, icons |
 | `--color-ink-soft` | `text-ink-soft` | `#3A3A3A` | Body copy, card descriptions |
 | `--color-ink-muted` | `text-ink-muted` | `#7A7A7A` | Dates, eyebrows, captions, section notes |
@@ -72,7 +72,7 @@ automatically. **Never write a raw hex value in a component.**
 
 The palette is a **single-accent system**: one warm neutral ramp (cream → paper), one ink ramp,
 one yellow. Adding a second accent color breaks it. If something needs to stand out, reach for
-weight, size, or the yellow — not a new hue.
+weight, size, or the yellow: not a new hue.
 
 There is **no dark mode**. The page is committed to light; `<meta name="color-scheme" content="light">`
 is set in `index.html`.
@@ -84,7 +84,7 @@ is set in `index.html`.
 | `--font-display` | `font-display` | `'Fraunces', Georgia, serif` |
 | `--font-body` | `font-body` | `'Work Sans', system-ui, sans-serif` |
 
-**Fraunces is for display only** — the hero name, section headings, card titles, the resume name.
+**Fraunces is for display only**: the hero name, section headings, card titles, the resume name.
 Everything else is Work Sans. Fraunces is a variable serif; the italic cut is used deliberately
 once, on the hero surname.
 
@@ -98,7 +98,7 @@ once, on the hero surname.
 Body sizes use Tailwind's defaults: `text-lg` (hero paragraph), `text-sm` (body copy, most UI),
 `text-xs` (metadata, tags, resume bullets).
 
-**Weights:** `font-light` (300) for body prose and the hero name — the design leans on light
+**Weights:** `font-light` (300) for body prose and the hero name: the design leans on light
 weights at large sizes. `font-medium` (500) for UI labels and metadata. `font-semibold` (600)
 for card titles and the primary button. Section headings are `font-normal` (400).
 
@@ -119,11 +119,11 @@ Eyebrows and uppercase labels use `tracking-widest` + `uppercase` + `text-ink-mu
 **One radius, everywhere.** Cards, buttons, tags, the modal, the portrait block. The design is
 deliberately near-square and editorial; `rounded-lg`, `rounded-full`, and pill shapes are off the
 table. Borders are always exactly `1px` `border-line`; there are no shadows anywhere in the
-system — depth comes from the paper-on-cream contrast and the hairline border.
+system: depth comes from the paper-on-cream contrast and the hairline border.
 
 ### Layout
 
-- Page container: `mx-auto w-full max-w-6xl px-6 sm:px-8` — use the `<Container>` primitive.
+- Page container: `mx-auto w-full max-w-6xl px-6 sm:px-8`: use the `<Container>` primitive.
 - Section rhythm: `py-20`, with a 1px `<Divider />` between major sections.
 - Nav is fixed at `h-auto py-5`; the hero clears it with `pt-32`, and anchor targets use
   `scroll-mt-24` plus `scroll-padding-top: 6rem` on `html`.
@@ -133,9 +133,9 @@ system — depth comes from the paper-on-cream contrast and the hairline border.
 
 Restrained and short. Only three moves exist:
 
-- `transition-transform duration-200 hover:-translate-y-0.5` — card lift
-- `transition-opacity hover:opacity-60` / `hover:opacity-80` — links and ghost buttons
-- `active:scale-95` — primary button press
+- `transition-transform duration-200 hover:-translate-y-0.5`: card lift
+- `transition-opacity hover:opacity-60` / `hover:opacity-80`: links and ghost buttons
+- `active:scale-95`: primary button press
 
 No entrance animations, no scroll-triggered reveals, no parallax. Don't add them.
 
@@ -143,7 +143,7 @@ No entrance animations, no scroll-triggered reveals, no parallax. Don't add them
 
 ## 4. Component recipes
 
-Canonical implementations live in `src/components/ui.tsx`. **Import them — don't re-derive the
+Canonical implementations live in `src/components/ui.tsx`. **Import them: don't re-derive the
 class strings.** If you need a variant, extend the primitive rather than copying its classes.
 
 ```tsx
@@ -152,7 +152,7 @@ class strings.** If you need a variant, extend the primitive rather than copying
 <SectionHeading title="Projects" note="Hackathon builds & personal work" />
 <Card>                 // paper surface, 1px line border, hover lift
 <Tag>TypeScript</Tag>  // cream-dark chip
-<PrimaryButton>        // solid yellow — at most one per view
+<PrimaryButton>        // solid yellow: at most one per view
 <GhostLink>            // outlined link on cream
 ```
 
@@ -170,7 +170,7 @@ Raw equivalents, for reference:
 
 ### Icons
 
-`src/components/icons.tsx` holds `ExternalIcon`, `GithubIcon`, `LinkedinIcon`, `EmailIcon` —
+`src/components/icons.tsx` holds `ExternalIcon`, `GithubIcon`, `LinkedinIcon`, `EmailIcon`:
 ported verbatim from the Figma source. They all paint with `currentColor` and accept a `size`
 prop. **Do not hand-author new SVG paths.** If a new icon is needed, export it from Figma or
 pull it from a licensed set, then add it to this file with the same `currentColor` convention.
@@ -184,7 +184,7 @@ Components render; they do not own content. All copy and data lives in `src/data
 | File | Holds | Resume source |
 |---|---|---|
 | `profile.ts` | Name, contact links, hero intro, resume summary | `master_doc.tex` header |
-| `experience.ts` | Jobs — `summary` for cards, `highlights` for the resume modal | `sections/experiences.md` |
+| `experience.ts` | Jobs: `summary` for cards, `highlights` for the resume modal | `sections/experiences.md` |
 | `projects.ts` | Projects, newest first. Optional `repo` field | `sections/projects.md` |
 | `education.ts` | Degree, GPA, coursework | `sections/education.md` |
 | `skills.ts` | Skill groups | `sections/technical-skills.md` |
@@ -199,7 +199,7 @@ Two conventions worth knowing:
   restores the yellow accent across the project grid.
 
 `public/experience.md` is the downloadable resume served at `/experience.md`. To ship a PDF
-instead, drop it in `public/` and change `profile.resumeFile` — that constant is the only
+instead, drop it in `public/` and change `profile.resumeFile`: that constant is the only
 reference.
 
 ---
@@ -216,9 +216,9 @@ don't "fix" them back.
 | Portrait from an Unsplash URL | Monogram tile on the yellow offset block | Placeholder stock photo of a stranger. Swap in a real photo per the note in `Hero.tsx` |
 | `::-webkit-scrollbar { width: 0 }` | 8px thumb in `border-line` | Hiding the scrollbar broke the scrollable resume modal |
 | Modal closes on backdrop click only | Also Escape, plus body scroll lock and `role="dialog"` | Basic modal accessibility |
-| Sections: Projects + Work History | Adds Education, Skills, Leadership, Volunteering | The resume has more material than the mock covered — built from the same Card/Tag recipes |
+| Sections: Projects + Work History | Adds Education, Skills, Leadership, Volunteering | The resume has more material than the mock covered: built from the same Card/Tag recipes |
 | `--color-white`, `--color-border` | `--color-paper`, `--color-line` | Avoids shadowing Tailwind built-ins and `border-border` |
-| Placeholder persona ("Alex Rivera") | Real content from `~/resume/sections/` | — |
+| Placeholder persona ("Alex Rivera") | Real content from `~/resume/sections/` |: |
 
 ---
 
@@ -232,5 +232,5 @@ don't "fix" them back.
 6. **Content goes in `src/data/`**, sourced from `~/resume/sections/`.
 7. **No new motion** beyond the three moves in § 3.
 8. **Borders are 1px `border-line`. Shadows do not exist** in this system.
-9. When pulling from Figma again, re-read the Make source files (§ 1) rather than guessing —
+9. When pulling from Figma again, re-read the Make source files (§ 1) rather than guessing:
    and update this document if the tokens moved.

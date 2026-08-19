@@ -2,7 +2,7 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'reac
 
 /**
  * Shared primitives. These are the canonical implementations of the recipes
- * documented in DESIGN.md — reuse them rather than re-deriving the classes.
+ * documented in DESIGN.md: reuse them rather than re-deriving the classes.
  */
 
 /** Page gutter + max width. Every top-level section is wrapped in one. */
@@ -63,7 +63,7 @@ export function Card({
   )
 }
 
-/** Solid yellow call to action. Used sparingly — at most one per view. */
+/** Solid yellow call to action. Used sparingly: at most one per view. */
 export function PrimaryButton({
   children,
   className = '',

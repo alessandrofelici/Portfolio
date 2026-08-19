@@ -50,7 +50,7 @@ export function Hero() {
  * Monogram tile sitting on the signature offset yellow block.
  *
  * The Figma source used a photograph here. To swap one in, drop the file in
- * public/ and replace the inner <div> with an <img> of the same fixed size —
+ * public/ and replace the inner <div> with an <img> of the same fixed size:
  * keep `relative`, the 300x380 box, and the offset block behind it.
  */
 function Portrait() {

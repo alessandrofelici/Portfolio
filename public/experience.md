@@ -10,14 +10,14 @@ github.com/alessandrofelici · linkedin.com/in/felici-alessandro
 
 Computer science student at Michigan State University with internship experience across
 full-stack product work, cloud infrastructure, and ML platform engineering. Comfortable
-owning a feature end to end — authentication, API, deployment, and the tests that keep it
+owning a feature end to end: authentication, API, deployment, and the tests that keep it
 standing.
 
 ---
 
 ## Education
 
-**Michigan State University Honors College** — East Lansing, MI
+**Michigan State University Honors College**: East Lansing, MI
 Bachelor of Science in Computer Science · Minors in Data Science and Computational Math
 GPA 3.9 · Aug. 2024 – Dec. 2027
 
@@ -30,7 +30,7 @@ Info Management and the Cloud
 
 ## Experience
 
-### Software Development Intern — APS Data Technologies
+### Software Development Intern: APS Data Technologies
 *Dec. 2025 – Present · Remote*
 
 - Implemented Google and Microsoft Entra OAuth authentication flows in a Django backend from
@@ -41,13 +41,13 @@ Info Management and the Cloud
   and deadline enforcement, validating every edge case with Postman.
 - Developed an admin document dashboard with filtering, email-based access invitations, and
   secure document downloads, integrated into the existing Django and Next.js codebase.
-- Diagnosed and resolved AWS deployment failures — ECR migration, corrupted storage, and K12
-  platform deployment issues across dev and production — restoring platform stability.
+- Diagnosed and resolved AWS deployment failures: ECR migration, corrupted storage, and K12
+  platform deployment issues across dev and production: restoring platform stability.
 - Conducted multi-account user testing on a K12 ERP platform across time and attendance,
   onboarding, and OIDC login modules, directing an AI coding agent to implement and patch
   features and validating outputs through manual testing and branch review.
 
-### Data Science Platform Engineering Intern — Auto-Owners Insurance
+### Data Science Platform Engineering Intern: Auto-Owners Insurance
 *May 2026 – Aug. 2026 · Lansing, MI*
 
 - Prototyped a Terraform IaC stack for ML batch inference, provisioning 7 AWS resources
@@ -60,11 +60,11 @@ Info Management and the Cloud
   augmentations, hyperparameters, and network size through a parameterized argparse workflow,
   and logged runs to MLflow as the baseline for the SageMaker batch transform POC.
 
-### Software Engineering Intern — Alchemy Software LLC
+### Software Engineering Intern: Alchemy Software LLC
 *May 2025 – Dec. 2025*
 
 - Developed a system introducing a time attribute to existing task objects, letting users add
-  time to tasks precisely — delivered 7 days ahead of schedule.
+  time to tasks precisely: delivered 7 days ahead of schedule.
 - Wrote over 20 test cases, including a testing library that reduced the work required for new
   test cases by 90%.
 - Actively managed code conflicts and design integration within a 6+ member team, collaborating
@@ -72,7 +72,7 @@ Info Management and the Cloud
 - Debugged and resolved critical issues within new features, ensuring stability for monthly
   version launches.
 
-### Independent Research: Proving in AI — Michigan State University
+### Independent Research: Proving in AI: Michigan State University
 *Jan. 2025 – May 2025 · East Lansing, MI*
 
 - Explored 6 sources via Google Scholar to study the foundations of computer science and
@@ -86,22 +86,22 @@ Info Management and the Cloud
 
 ## Projects
 
-**GapWrap** — Python, Flask, TypeScript, React, Vite · *Jan. 2026 – Feb. 2026*
+**GapWrap**: Python, Flask, TypeScript, React, Vite · *Jan. 2026 – Feb. 2026*
 Crypto sandwich-attack detector built at SpartaHack 11. A Python listener and slippage engine
 flag bot-driven price manipulation on incoming transactions, while a React + Vite frontend
 visualizes transaction risk and wraps trades in slippage protection.
 
-**Easy Text Transfer** — Electron, React Native, Expo, TypeScript, Firebase · *Oct. 2025 – Dec. 2025*
+**Easy Text Transfer**: Electron, React Native, Expo, TypeScript, Firebase · *Oct. 2025 – Dec. 2025*
 Cross-platform text and note sync across desktop and mobile clients using a polling-based
 architecture with last-write-wins conflict resolution, eliminating conflict ambiguity without a
 distributed consensus protocol.
 
-**Fluent** — React, TypeScript, Flask, LangChain, Groq · *Jan. 2025 – Feb. 2025*
+**Fluent**: React, TypeScript, Flask, LangChain, Groq · *Jan. 2025 – Feb. 2025*
 Interactive language-learning chatbot built at SpartaHack X, using Groq's Llama 3.3 70B with a
 five-interaction conversational memory buffer and a React frontend tracking quiz state, scoring,
 and language selection.
 
-**Ollama Client & Gemini Extension** — React, JavaScript, REST, Ollama · *Jan. 2025 – Sep. 2025*
+**Ollama Client & Gemini Extension**: React, JavaScript, REST, Ollama · *Jan. 2025 – Sep. 2025*
 A React frontend for local Ollama interaction and a Chrome extension communicating with Gemini
 and Mistral over REST.
 
@@ -109,11 +109,11 @@ and Mistral over REST.
 
 ## Leadership
 
-### Project Director — Imagine Software Consultancy
+### Project Director: Imagine Software Consultancy
 *Aug. 2024 – Present*
 
 - Led weekly check-ins with project leads across 7 concurrent client projects, identifying
-  blockers early to maintain progress before semester checkpoints — all 7 projects met MVP
+  blockers early to maintain progress before semester checkpoints: all 7 projects met MVP
   requirements and reached deployment.
 - Defined project specifications and requirements with clients each semester, producing
   reference documentation that let development teams begin work immediately.
@@ -122,7 +122,7 @@ and Mistral over REST.
 - Developed and delivered educational workshops on developer tools and Git for 10+ members,
   including slides, reference documents, and live demos.
 
-### Mechanical Lead — FRC Team 3604 Goon Squad
+### Mechanical Lead: FRC Team 3604 Goon Squad
 *Sep. 2021 – May 2024*
 
 - Designed and manufactured a game piece launch system, iterating on the subsystem to increase
@@ -137,10 +137,10 @@ and Mistral over REST.
 
 ## Volunteering
 
-**MSU Science Festival** — Quantum Computing in The Quantum Zone · *Apr. 2025*
+**MSU Science Festival**: Quantum Computing in The Quantum Zone · *Apr. 2025*
 Taught nearly 250 visitors quantum algorithms using the IBM Quantum Composer.
 
-**FIRST Robotics Competition** — Referee, Official Scorer, Crowd Control · *June 2024 – June 2025*
+**FIRST Robotics Competition**: Referee, Official Scorer, Crowd Control · *June 2024 – June 2025*
 Helped run high school competitions over weekends, spanning 100+ matches.
 
 ---

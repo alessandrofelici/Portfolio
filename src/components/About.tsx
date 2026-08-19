@@ -6,7 +6,7 @@ import { Card, Container, SectionHeading, Tag } from './ui'
 /**
  * Education, skills, leadership, and volunteering.
  *
- * These sections are not in the Figma source — they extend the same card and
+ * These sections are not in the Figma source: they extend the same card and
  * tag recipes to the remaining resume material. See DESIGN.md § Deviations.
  */
 export function About() {
@@ -99,7 +99,7 @@ export function About() {
                   <div>
                     <p className="text-sm font-medium text-ink">{entry.organization}</p>
                     <p className="mt-0.5 text-sm leading-relaxed font-light text-ink-soft">
-                      {entry.role} — {entry.summary}
+                      {entry.role}: {entry.summary}
                     </p>
                   </div>
                   <span className="text-sm font-medium whitespace-nowrap text-ink-muted sm:text-right">

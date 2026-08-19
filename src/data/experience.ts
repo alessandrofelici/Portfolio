@@ -22,12 +22,12 @@ export const jobs: Job[] = [
     period: 'Dec. 2025 – Present',
     location: 'Remote',
     summary:
-      'Built Google and Microsoft Entra OAuth flows from scratch in a Django backend — no third-party auth libraries — plus a hackathon management API and an admin document dashboard, all shipped into a production Django and Next.js platform.',
+      'Built Google and Microsoft Entra OAuth flows from scratch in a Django backend: no third-party auth libraries: plus a hackathon management API and an admin document dashboard, all shipped into a production Django and Next.js platform.',
     highlights: [
       'Implemented Google and Microsoft Entra OAuth authentication flows in a Django backend from scratch without third-party libraries, handling token verification, cross-window messaging, and role-based registration paths, enabling secure login across multiple user roles in production.',
       'Built a hackathon management backend with full CRUD, user registration, project submission, and deadline enforcement, validating every edge case with Postman.',
       'Developed an admin document dashboard with filtering, email-based access invitations, and secure document downloads, integrated into the existing Django and Next.js codebase.',
-      'Diagnosed and resolved AWS deployment failures — ECR migration, corrupted storage, and K12 platform deployment issues across dev and production — restoring platform stability.',
+      'Diagnosed and resolved AWS deployment failures: ECR migration, corrupted storage, and K12 platform deployment issues across dev and production: restoring platform stability.',
       'Conducted multi-account user testing on a K12 ERP platform across time and attendance, onboarding, and OIDC login modules, directing an AI coding agent to implement and patch features and validating outputs through manual testing and branch review.',
     ],
     stack: ['Django', 'Next.js', 'Python', 'OAuth / OIDC', 'AWS', 'Postman'],
@@ -54,7 +54,7 @@ export const jobs: Job[] = [
     summary:
       'Added a time attribute to the product’s existing task objects and delivered it seven days ahead of schedule, alongside a testing library that cut the work of writing new test cases by 90%.',
     highlights: [
-      'Developed a system introducing a time attribute to existing task objects, letting users add time to tasks precisely — delivered 7 days ahead of schedule.',
+      'Developed a system introducing a time attribute to existing task objects, letting users add time to tasks precisely: delivered 7 days ahead of schedule.',
       'Wrote over 20 test cases, including a testing library that reduced the work required for new test cases by 90%.',
       'Actively managed code conflicts and design integration within a 6+ member team, collaborating in weekly meetings to combine new features and streamline development workflows.',
       'Debugged and resolved critical issues within new features, ensuring stability for monthly version launches.',
@@ -62,7 +62,7 @@ export const jobs: Job[] = [
     stack: ['Testing', 'Git', 'Agile'],
   },
   {
-    role: 'Independent Research — Proving in AI',
+    role: 'Independent Research: Proving in AI',
     company: 'Michigan State University',
     period: 'Jan. 2025 – May 2025',
     location: 'East Lansing, MI',

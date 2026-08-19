@@ -16,9 +16,9 @@ export const organizations: Organization[] = [
     role: 'Project Director',
     period: 'Aug. 2024 – Present',
     summary:
-      'Run delivery across 7 concurrent client projects — weekly check-ins with project leads, specifications defined with clients each semester, and the client communication that keeps deadlines, payments, and expectations aligned. All 7 projects met MVP requirements and reached deployment.',
+      'Run delivery across 7 concurrent client projects: weekly check-ins with project leads, specifications defined with clients each semester, and the client communication that keeps deadlines, payments, and expectations aligned. All 7 projects met MVP requirements and reached deployment.',
     highlights: [
-      'Led weekly check-ins with project leads across 7 concurrent client projects, identifying blockers early to maintain progress before semester checkpoints — all 7 projects met MVP requirements and reached deployment.',
+      'Led weekly check-ins with project leads across 7 concurrent client projects, identifying blockers early to maintain progress before semester checkpoints: all 7 projects met MVP requirements and reached deployment.',
       'Defined project specifications and requirements with clients each semester, producing reference documentation that let development teams begin work immediately and stay aligned through delivery.',
       'Maintained ongoing client communication covering deadlines, payments, and expectations across 7 active engagements, retaining every client through semester delivery.',
       'Developed and delivered educational workshops on developer tools and Git for 10+ members, including slides, reference documents, and live demos.',

@@ -1,6 +1,6 @@
 # Portfolio
 
-Personal website for **Alessandro Felici** — software engineer, CS @ Michigan State.
+Personal website for **Alessandro Felici**: software engineer, CS @ Michigan State.
 
 Built from a [Figma Make design](https://www.figma.com/make/gesOYyUtfe2Yibc8g7fuR4/Personal-website-design)
 with content sourced from `~/resume/sections/`.
@@ -26,9 +26,9 @@ npm run typecheck  # tsc --noEmit
 
 ## Working on this
 
-- **[DESIGN.md](./DESIGN.md)** — design tokens, component recipes, and the rules of the visual
+- **[DESIGN.md](./DESIGN.md)**: design tokens, component recipes, and the rules of the visual
   system. Read it before writing UI code.
-- **[CLAUDE.md](./CLAUDE.md)** — orientation for AI agents working in the repo.
+- **[CLAUDE.md](./CLAUDE.md)**: orientation for AI agents working in the repo.
 
 Content lives in `src/data/*.ts`, not in components. The downloadable resume is
 `public/experience.md`.
