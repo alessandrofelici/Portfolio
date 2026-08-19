@@ -18,12 +18,22 @@ export type Job = {
   summary: string
   highlights: string[]
   stack: string[]
+  /**
+   * Square company logo in public/images/. Optional on purpose: entries with no
+   * logo (independent research, self-directed work) render without one and the
+   * card reflows, so never add a placeholder just to fill the slot.
+   */
+  logo?: string
+  /** Company LinkedIn page. Only used when `logo` is set: it is the link target. */
+  linkedin?: string
 }
 
 export const jobs: Job[] = [
   {
     role: 'Software Development Intern',
     company: 'APS Data Technologies',
+    logo: '/images/aps.png',
+    linkedin: 'https://www.linkedin.com/company/aps-data-technologies/',
     period: 'Dec. 2025 – Present',
     location: 'Remote',
     summary:
@@ -40,6 +50,8 @@ export const jobs: Job[] = [
   {
     role: 'Data Science Platform Engineering Intern',
     company: 'Auto-Owners Insurance',
+    logo: '/images/Auto-Owners.png',
+    linkedin: 'https://www.linkedin.com/company/auto-owners-insurance/',
     period: 'May 2026 – Aug. 2026',
     location: 'Lansing, MI',
     summary:
@@ -54,6 +66,8 @@ export const jobs: Job[] = [
   {
     role: 'Software Engineering Intern',
     company: 'Alchemy Software LLC',
+    logo: '/images/alchemy.png',
+    linkedin: 'https://www.linkedin.com/company/alchemy-software-llc/',
     period: 'May 2025 – Dec. 2025',
     location: 'Remote',
     summary:

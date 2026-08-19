@@ -132,13 +132,16 @@ system: depth comes from the paper-on-cream contrast and the hairline border.
 
 ### Motion
 
-Restrained and short. Only three moves exist:
+Restrained and short. Only four moves exist:
 
 - `transition-transform duration-200 hover:-translate-y-0.5`: card lift
 - `transition-opacity hover:opacity-60` / `hover:opacity-80`: links and ghost buttons
 - `active:scale-95`: primary button press
+- `transition-transform duration-200 hover:scale-110`: company logo grow
 
-No entrance animations, no scroll-triggered reveals, no parallax. Don't add them.
+Everything shares `duration-200` and a transform or opacity change: nothing animates color,
+size, or layout. No entrance animations, no scroll-triggered reveals, no parallax.
+Don't add them.
 
 ---
 
@@ -216,6 +219,12 @@ keep it small and keep full-resolution originals out of it.
 | `public/documents/Alessandro_Felici_Resume.pdf` | `/documents/…` | `profile.resumeFile` |
 | `public/images/SanMarinoHeadshotCropped.jpg` | `/images/…` | `profile.portrait` |
 | `public/images/Orange.png` | `/images/…` | `index.html` favicon + apple-touch-icon |
+| `public/images/{aps,alchemy,Auto-Owners}.png` | `/images/…` | `Job.logo` in `experience.ts` |
+
+Company logos are square (200x200), rendered at 48px in the Work History cards. `Job.logo` and
+`Job.linkedin` are both optional: an entry without a logo renders none and the text reflows,
+and a logo without a LinkedIn URL renders inert rather than as a link. Never add a placeholder
+logo to fill the slot.
 
 The favicon is an orange, 256x256. It is the one place an orange appears: it reads as a
 personal mark rather than UI chrome, so it sits outside the single-accent palette rule in § 3.
