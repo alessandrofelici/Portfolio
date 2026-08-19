@@ -55,7 +55,7 @@ export function Hero() {
  */
 function Portrait() {
   return (
-    <div className="flex items-start justify-center lg:justify-end">
+    <div className="flex items-center justify-center lg:justify-end">
       <div className="relative">
         <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-sharp bg-yellow" />
         <img
@@ -63,7 +63,7 @@ function Portrait() {
           alt={profile.portraitAlt}
           width={300}
           height={380}
-          className="relative block h-[380px] w-[300px] rounded-sharp border border-line bg-cream-dark object-cover"
+          className="relative block h-[480px] w-[400px] rounded-sharp border border-line bg-cream-dark object-cover"
         />
       </div>
     </div>
