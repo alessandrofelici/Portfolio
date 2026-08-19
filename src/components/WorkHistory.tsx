@@ -22,7 +22,7 @@ function CompanyLogo({ job }: { job: Job }) {
       alt={`${job.company} logo`}
       width={48}
       height={48}
-      className="h-12 w-12 rounded-sharp border border-line bg-paper object-cover"
+      className="h-12 w-12 rounded-sharp object-cover"
     />
   )
 
@@ -62,12 +62,19 @@ export function WorkHistory() {
         <div className="flex flex-col gap-4">
           {jobs.map((job) => (
             <Card key={`${job.company}-${job.period}`} className="grid gap-4 sm:grid-cols-[1fr_auto]">
-              <div className="flex gap-4">
-                {/* Absent for entries with no company logo; the text simply reflows. */}
-                <CompanyLogo job={job} />
+              {/*
+                Two stacked blocks, both flush to the card's left edge: an
+                identity header (logo + role + company), then the body. The body
+                is deliberately NOT nested beside the logo, so the description
+                and tags start at the same left edge as the logo rather than
+                indented behind it.
+              */}
+              <div className="flex min-w-0 flex-col gap-3">
+                <div className="flex items-center gap-4">
+                  {/* Absent for entries with no company logo; the title simply shifts left. */}
+                  <CompanyLogo job={job} />
 
-                <div className="flex min-w-0 flex-col gap-2">
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="font-display text-display-sm font-semibold tracking-title text-ink">
                       {job.role}
                     </h3>
@@ -75,7 +82,9 @@ export function WorkHistory() {
                       {job.company} · {job.location}
                     </p>
                   </div>
+                </div>
 
+                <div className="flex flex-col gap-2">
                   <p className="max-w-[58ch] text-sm leading-relaxed font-light text-ink-soft">
                     {job.summary}
                   </p>
