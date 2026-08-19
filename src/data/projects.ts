@@ -21,6 +21,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: 'EV Adoption in Washington State',
+    period: 'May 2026',
+    description:
+      'Statistical study of how Washington’s electric vehicle market is changing, joining state Department of Licensing registrations to Census ACS demographics by ZIP code. Regression tracks PHEV range across model years and tests income, population, and education as adoption predictors, while a k-nearest-neighbors classifier asks whether geography and model year alone separate BEVs from PHEVs.',
+    stack: ['R', 'tidyverse', 'caret', 'tidycensus', 'Regression'],
+    paper: '/documents/honors_project_writeup.pdf',
+  },
+  {
     title: 'GapWrap',
     period: 'Jan. 2026 – Feb. 2026',
     description:

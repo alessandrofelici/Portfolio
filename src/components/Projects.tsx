@@ -53,7 +53,7 @@ export function Projects() {
   return (
     <section id="projects" className="scroll-mt-24 py-20">
       <Container>
-        <SectionHeading title="Projects" note="Hackathon builds & personal work" />
+        <SectionHeading title="Projects" note="Hackathon builds, research & personal work" />
 
         <div className="grid gap-4 sm:grid-cols-[repeat(auto-fill,minmax(320px,1fr))]">
           {projects.map((project) => (
