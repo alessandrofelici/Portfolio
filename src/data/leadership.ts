@@ -1,6 +1,9 @@
 /**
  * Organizations and volunteering.
  * Source: ~/resume/sections/organizations.md and volunteering.md
+ *
+ * As in experience.ts, `highlights` is currently unrendered: the site cards use
+ * `summary`, and the resume modal embeds the PDF rather than re-rendering it.
  */
 export type Organization = {
   name: string

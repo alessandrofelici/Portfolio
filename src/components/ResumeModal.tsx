@@ -1,18 +1,51 @@
 import { useEffect } from 'react'
-import type { ReactNode } from 'react'
-import { education } from '../data/education'
-import { jobs } from '../data/experience'
-import { organizations } from '../data/leadership'
 import { profile } from '../data/profile'
-import { projects } from '../data/projects'
-import { skillGroups } from '../data/skills'
 
 /**
- * Full-screen resume sheet.
+ * Resume sheet: embeds the real PDF via the browser's native viewer.
+ *
+ * The PDF is the resume. Nothing here re-renders its contents from src/data,
+ * so the modal can never drift from the file people download.
+ *
+ * `<object>` is used rather than `<iframe>` because its children act as
+ * built-in fallback content for browsers that cannot display PDFs inline,
+ * which is most mobile browsers.
  *
  * Extends the Figma source with Escape-to-close, background scroll locking,
  * and dialog semantics. See DESIGN.md § Deviations.
  */
+/**
+ * Whether the browser renders PDFs inline.
+ *
+ * `<object>` only swaps in its fallback children when the resource itself fails
+ * to load; a browser with no PDF viewer often paints an empty box instead. Most
+ * mobile browsers are in that category, so ask directly. Browsers that don't
+ * implement the property are treated as capable, since the `<object>` children
+ * still cover them.
+ */
+function inlinePdfSupported() {
+  return typeof navigator === 'undefined' || navigator.pdfViewerEnabled !== false
+}
+
+/** Shown when the PDF can't be displayed in place. */
+function PdfFallback() {
+  return (
+    <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center">
+      <p className="text-sm leading-relaxed font-light text-ink-soft">
+        This browser can&rsquo;t display PDFs in place.
+      </p>
+      <a
+        href={profile.resumeFile}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="rounded-sharp bg-yellow px-4 py-2 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
+      >
+        Open the PDF
+      </a>
+    </div>
+  )
+}
+
 export function ResumeModal({ onClose }: { onClose: () => void }) {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -65,139 +98,22 @@ export function ResumeModal({ onClose }: { onClose: () => void }) {
           </div>
         </div>
 
-        {/* Sheet */}
-        <div className="flex-1 overflow-y-auto bg-cream p-4 sm:p-8">
-          <div className="mx-auto max-w-2xl rounded-sharp border border-line bg-paper p-6 sm:p-12">
-            <header className="mb-8 border-b-2 border-yellow pb-6">
-              <h1 className="mb-1 font-display text-[2.5rem] leading-tight font-light tracking-display text-ink">
-                {profile.name}
-              </h1>
-              <p className="text-sm font-medium text-ink-soft">{profile.resumeTitle}</p>
-              <div className="mt-3 flex flex-wrap gap-4 text-xs text-ink-muted">
-                <span>{profile.email}</span>
-                <span>{profile.phone}</span>
-                <span>{profile.githubHandle}</span>
-                <span>{profile.linkedinHandle}</span>
-                <span>{profile.location}</span>
-              </div>
-            </header>
-
-            <ResumeSection title="Summary">
-              <p className="text-sm leading-relaxed font-light text-ink-soft">{profile.summary}</p>
-            </ResumeSection>
-
-            <ResumeSection title="Education">
-              <div className="mb-1 flex items-baseline justify-between gap-4">
-                <span className="text-sm font-semibold text-ink">{education.school}</span>
-                <span className="shrink-0 text-xs text-ink-muted">{education.period}</span>
-              </div>
-              <p className="text-xs leading-relaxed font-light text-ink-soft">
-                {education.degree} · Minors in {education.minors.join(' and ')} · GPA{' '}
-                {education.gpa} · {education.location}
-              </p>
-            </ResumeSection>
-
-            <ResumeSection title="Experience">
-              <div className="flex flex-col gap-5">
-                {jobs.map((job) => (
-                  <div key={`${job.company}-${job.period}`}>
-                    <div className="mb-1 flex items-baseline justify-between gap-4">
-                      <span className="text-sm font-semibold text-ink">
-                        {job.role}: {job.company}
-                      </span>
-                      <span className="shrink-0 text-xs text-ink-muted">{job.period}</span>
-                    </div>
-                    <ul className="ml-4 list-disc space-y-1">
-                      {job.highlights.map((highlight) => (
-                        <li
-                          key={highlight}
-                          className="text-xs leading-relaxed font-light text-ink-soft"
-                        >
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-2 flex flex-wrap gap-1">
-                      {job.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-sharp bg-cream-dark px-1.5 py-0.5 text-xs text-ink-soft"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </ResumeSection>
-
-            <ResumeSection title="Selected Projects">
-              <div className="flex flex-col gap-3">
-                {projects.map((project) => (
-                  <div key={project.title}>
-                    <div className="flex items-baseline justify-between gap-4">
-                      <span className="text-sm font-semibold text-ink">{project.title}</span>
-                      <span className="shrink-0 text-xs text-ink-muted">{project.period}</span>
-                    </div>
-                    <p className="mt-0.5 text-xs leading-relaxed font-light text-ink-soft">
-                      {project.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </ResumeSection>
-
-            <ResumeSection title="Leadership">
-              <div className="flex flex-col gap-3">
-                {organizations.map((org) => (
-                  <div key={org.name}>
-                    <div className="flex items-baseline justify-between gap-4">
-                      <span className="text-sm font-semibold text-ink">
-                        {org.role}: {org.name}
-                      </span>
-                      <span className="shrink-0 text-xs text-ink-muted">{org.period}</span>
-                    </div>
-                    <p className="mt-0.5 text-xs leading-relaxed font-light text-ink-soft">
-                      {org.summary}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </ResumeSection>
-
-            <ResumeSection title="Technical Skills" last>
-              <div className="flex flex-col gap-2">
-                {skillGroups.map((group) => (
-                  <p key={group.label} className="text-xs leading-relaxed text-ink-soft">
-                    <span className="font-semibold text-ink">{group.label}: </span>
-                    <span className="font-light">{group.items.join(', ')}</span>
-                  </p>
-                ))}
-              </div>
-            </ResumeSection>
-          </div>
+        {/* The PDF itself. #view=FitH fits the page width on load. */}
+        <div className="flex-1 overflow-hidden bg-cream">
+          {inlinePdfSupported() ? (
+            <object
+              data={`${profile.resumeFile}#view=FitH`}
+              type="application/pdf"
+              aria-label={`Resume PDF: ${profile.name}`}
+              className="h-full w-full"
+            >
+              <PdfFallback />
+            </object>
+          ) : (
+            <PdfFallback />
+          )}
         </div>
       </div>
     </div>
-  )
-}
-
-function ResumeSection({
-  title,
-  children,
-  last = false,
-}: {
-  title: string
-  children: ReactNode
-  last?: boolean
-}) {
-  return (
-    <section className={last ? '' : 'mb-6'}>
-      <h2 className="mb-3 text-xs font-semibold tracking-widest text-ink-muted uppercase">
-        {title}
-      </h2>
-      {children}
-    </section>
   )
 }

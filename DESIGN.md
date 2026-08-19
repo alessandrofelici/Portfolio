@@ -185,7 +185,7 @@ Components render; they do not own content. All copy and data lives in `src/data
 | File | Holds | Resume source |
 |---|---|---|
 | `profile.ts` | Name, contact links, hero intro, resume summary | `master_doc.tex` header |
-| `experience.ts` | Jobs: `summary` for cards, `highlights` for the resume modal | `sections/experiences.md` |
+| `experience.ts` | Jobs: `summary` for cards; `highlights` currently unrendered | `sections/experiences.md` |
 | `projects.ts` | Projects, newest first. Optional `repo` field | `sections/projects.md` |
 | `education.ts` | Degree, GPA, coursework | `sections/education.md` |
 | `skills.ts` | Skill groups | `sections/technical-skills.md` |
@@ -193,8 +193,15 @@ Components render; they do not own content. All copy and data lives in `src/data
 
 Two conventions worth knowing:
 
-- **`summary` vs `highlights`.** Cards on the page show a single flowing `summary` paragraph;
-  the resume modal shows the `highlights` bullet list. Keep both in sync when the resume changes.
+- **The resume modal shows the PDF, it does not re-render it.** `ResumeModal` embeds
+  `profile.resumeFile` in an `<object>` and uses the browser's native PDF viewer, so what
+  visitors read is byte-for-byte the file they download. Never rebuild the resume out of
+  `src/data` in HTML: that reintroduces a second copy that silently drifts from the PDF.
+  The `<object>` children are the fallback for browsers that can't render PDFs inline
+  (most mobile ones) — keep that fallback working.
+- **`summary` vs `highlights`.** Cards on the page show a single flowing `summary` paragraph.
+  `highlights` is retained structured source material and is currently rendered nowhere;
+  editing it changes nothing on the page.
 - **`Project.repo` is optional.** When present, the card header renders the yellow GitHub pill
   from the original design. When absent, it falls back to a muted date range. Adding repo URLs
   restores the yellow accent across the project grid.

@@ -3,7 +3,12 @@
  * Source: ~/resume/sections/experiences.md
  *
  * `summary` is the one-paragraph version shown on the site card.
- * `highlights` are the resume bullets, shown in the resume modal.
+ *
+ * `highlights` are the full resume bullets. NOTHING RENDERS THEM: the resume
+ * modal embeds the PDF directly rather than re-rendering its contents. They are
+ * kept as structured source material for a future HTML resume view or for
+ * indexable detail. Delete them if that never materializes; don't assume
+ * editing them changes anything on the page.
  */
 export type Job = {
   role: string
