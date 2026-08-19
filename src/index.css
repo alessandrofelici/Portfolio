@@ -102,6 +102,17 @@
     border-radius: var(--radius-sharp);
   }
 
+  /* Buttons get the hand cursor, same as links.
+     Browsers default `<button>` to the arrow cursor and Tailwind's preflight
+     does not override it, so the Resume button felt inert next to the GitHub
+     and PDF pills beside it, which are anchors and so get the hand for free.
+     Set here rather than on each primitive: it is one rule, and it also covers
+     the raw buttons (the modal's Close, the footer's Back to top).
+     `:not(:disabled)` so a disabled control never claims to be clickable. */
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-yellow);
     outline-offset: 2px;

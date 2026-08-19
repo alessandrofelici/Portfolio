@@ -24,7 +24,7 @@ export const profile = {
 
   /** Hero paragraph. */
   intro:
-    'I build backend systems, cloud infrastructure, and the interfaces that sit on top of them: OAuth flows written from scratch, Terraform stacks for ML inference, and full-stack tools that actually ship. Currently a software development intern at APS Data Technologies, most recently on the data science platform team at Auto-Owners Insurance.',
+    'I build robust backend systems, scalable cloud infrastructure, and the user-facing interfaces that bring them to life. Recently, I’ve focused on deploying Terraform pipelines for ML inference and shipping production-ready full-stack tools. While attending class at Michigan State University, I’m constantly searching for opportunities to experiment and learn new or familiar technology. Currently, I’m doing MLOps work at Auto-Owners Insurance and helping expand the tech student network on campus as a project director at Imagine Software Consultancy.',
 
   /** Summary paragraph inside the resume modal. */
   summary:
