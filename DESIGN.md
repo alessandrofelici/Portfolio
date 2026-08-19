@@ -208,6 +208,11 @@ keep it small and keep full-resolution originals out of it.
 |---|---|---|
 | `public/documents/Alessandro_Felici_Resume.pdf` | `/documents/…` | `profile.resumeFile` |
 | `public/images/SanMarinoHeadshotCropped.jpg` | `/images/…` | `profile.portrait` |
+| `public/images/Orange.png` | `/images/…` | `index.html` favicon + apple-touch-icon |
+
+The favicon is an orange, 256x256. It is the one place an orange appears: it reads as a
+personal mark rather than UI chrome, so it sits outside the single-accent palette rule in § 3.
+Don't pull its orange into the interface.
 
 The resume PDF is reached from exactly two places, both through `profile.resumeFile`: the
 `resume.pdf` link beside the Work History heading, and the Download button in the resume modal.
