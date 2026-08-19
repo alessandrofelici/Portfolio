@@ -79,6 +79,22 @@ export function PrimaryButton({
   )
 }
 
+/** Outlined button on the cream page background. The `GhostLink` twin for real actions. */
+export function GhostButton({
+  children,
+  className = '',
+  ...props
+}: ButtonHTMLAttributes<HTMLButtonElement>) {
+  return (
+    <button
+      className={`inline-flex items-center gap-2 rounded-sharp border border-line px-4 py-2.5 text-sm font-medium text-ink transition-opacity hover:opacity-80 ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  )
+}
+
 /** Outlined link/button on the cream page background. */
 export function GhostLink({
   children,

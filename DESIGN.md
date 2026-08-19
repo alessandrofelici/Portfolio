@@ -105,8 +105,8 @@ for card titles and the primary button. Section headings are `font-normal` (400)
 
 | Token | Utility | Value | Applied at |
 |---|---|---|---|
-| `--tracking-display` | `tracking-display` | `-0.03em` | Hero name, resume name |
-| `--tracking-heading` | `tracking-heading` | `-0.02em` | Section headings, nav wordmark |
+| `--tracking-display` | `tracking-display` | `-0.03em` | Hero name, resume name, nav monogram |
+| `--tracking-heading` | `tracking-heading` | `-0.02em` | Section headings |
 | `--tracking-title` | `tracking-title` | `-0.01em` | Card titles |
 
 Eyebrows and uppercase labels use `tracking-widest` + `uppercase` + `text-ink-muted`.
@@ -158,7 +158,14 @@ class strings.** If you need a variant, extend the primitive rather than copying
 <Tag>TypeScript</Tag>  // cream-dark chip
 <PrimaryButton>        // solid yellow: at most one per view
 <GhostLink>            // outlined link on cream
+<GhostButton>          // outlined button on cream, for real actions
 ```
+
+**The nav is a monogram and one action.** It carries `profile.initials` set in italic
+`font-display` — echoing the hero's italic surname — plus the Resume button, and nothing else.
+Section links were removed: the page is short enough to scan, and a fixed bar competing with
+the hero for attention cost more than it gave. The monogram links to `#top`; a "Back to top"
+`GhostButton` closes the page in the footer.
 
 Raw equivalents, for reference:
 
