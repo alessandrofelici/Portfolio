@@ -1,0 +1,109 @@
+/* ---------------------------------------------------------------------------
+ * Design system entrypoint.
+ *
+ * Every color, font, size, and radius the site uses is declared here as a
+ * Tailwind v4 `@theme` token. Components consume them as utility classes
+ * (`bg-cream`, `text-ink-muted`, `font-display`, `rounded-sharp`, ...).
+ *
+ * Do not hardcode hex values in components. See DESIGN.md for the full
+ * rationale, the token table, and the component recipes.
+ * ------------------------------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  /* --- Surfaces ----------------------------------------------------------
+   * cream       page background
+   * cream-dark  inset chips / tags
+   * paper       raised cards, modal sheet
+   */
+  --color-cream: #f9f6ee;
+  --color-cream-dark: #f0ebd8;
+  --color-paper: #ffffff;
+
+  /* --- Accent ------------------------------------------------------------
+   * yellow is the single accent. Used sparingly: primary button, the offset
+   * block behind the portrait, resume rule, text selection.
+   */
+  --color-yellow: #f5c400;
+  --color-yellow-light: #fff3a3;
+
+  /* --- Ink ---------------------------------------------------------------
+   * ink        headings, primary text, icons
+   * ink-soft   body copy
+   * ink-muted  metadata, eyebrows, captions
+   */
+  --color-ink: #0c0c0c;
+  --color-ink-soft: #3a3a3a;
+  --color-ink-muted: #7a7a7a;
+
+  /* --- Structure --------------------------------------------------------- */
+  --color-line: #d8d0bc;
+
+  /* --- Type -------------------------------------------------------------- */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Work Sans', system-ui, sans-serif;
+
+  --text-display-xl: clamp(3.5rem, 7vw, 6rem);
+  --text-display-xl--line-height: 0.95;
+  --text-display-lg: 2.25rem;
+  --text-display-lg--line-height: 1.1;
+  --text-display-md: 1.25rem;
+  --text-display-md--line-height: 1.3;
+  --text-display-sm: 1.15rem;
+  --text-display-sm--line-height: 1.3;
+
+  --tracking-display: -0.03em;
+  --tracking-heading: -0.02em;
+  --tracking-title: -0.01em;
+
+  /* --- Geometry ----------------------------------------------------------
+   * The design is deliberately near-square: one 2px radius everywhere.
+   */
+  --radius-sharp: 2px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchor jumps so section headings clear the fixed nav. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-yellow);
+    color: var(--color-ink);
+  }
+
+  /* Thin, on-palette scrollbar. The Figma source hid the scrollbar entirely;
+     that breaks the scrollable resume modal, so it is styled instead. */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line);
+    border-radius: var(--radius-sharp);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-yellow);
+    outline-offset: 2px;
+  }
+}
