@@ -37,10 +37,18 @@ export function SectionHeading({ title, note }: { title: string; note?: ReactNod
   )
 }
 
-/** Inset chip used for tech stack and coursework. */
-export function Tag({ children }: { children: ReactNode }) {
+/** Inset chip used for tech stack, coursework, and the search placeholder. */
+export function Tag({
+  children,
+  className = '',
+}: {
+  children: ReactNode
+  className?: string
+}) {
   return (
-    <span className="rounded-sharp bg-cream-dark px-2 py-0.5 text-xs font-medium text-ink-soft">
+    <span
+      className={`rounded-sharp bg-cream-dark px-2 py-0.5 text-xs font-medium text-ink-soft ${className}`}
+    >
       {children}
     </span>
   )

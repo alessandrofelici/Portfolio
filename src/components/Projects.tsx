@@ -1,5 +1,5 @@
 import type { Project } from '../data/projects'
-import { projects } from '../data/projects'
+import { projects as allProjects } from '../data/projects'
 import { ExternalIcon, GithubIcon } from './icons'
 import { Card, Container, SectionHeading, Tag } from './ui'
 
@@ -49,11 +49,25 @@ function ProjectLink({ project }: { project: Project }) {
   return null
 }
 
-export function Projects() {
+/**
+ * `projects` is the filtered slice from the nav search, which is the full list
+ * when nothing is being searched. The heading note reports the narrowing so the
+ * shortened grid never looks like missing content.
+ */
+export function Projects({ projects }: { projects: Project[] }) {
+  const filtered = projects.length !== allProjects.length
+
   return (
     <section id="projects" className="scroll-mt-24 py-20">
       <Container>
-        <SectionHeading title="Projects" note="Hackathon builds, research & personal work" />
+        <SectionHeading
+          title="Projects"
+          note={
+            filtered
+              ? `${projects.length} of ${allProjects.length}`
+              : 'Hackathon builds, research & personal work'
+          }
+        />
 
         <div className="grid gap-4 sm:grid-cols-[repeat(auto-fill,minmax(320px,1fr))]">
           {projects.map((project) => (

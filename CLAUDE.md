@@ -18,6 +18,11 @@ Figma source of truth, and the rules that keep the visual system coherent. The s
 All copy and resume data lives in `src/data/*.ts`, sourced from `~/resume/sections/*.md`.
 Components render data: they never hardcode content.
 
+The nav search filters every section from that same data. `Projects`, `WorkHistory`, and
+`About` take their records as props rather than importing them, so `App` can hand them a
+filtered slice; sections with no matches are not rendered at all. Adding a searchable field
+means adding it to `src/lib/search.ts`, not just to `src/data/`.
+
 Static assets ship from `public/` and are referenced only through `src/data/profile.ts`:
 
 - `public/documents/Alessandro_Felici_Resume.pdf` → `profile.resumeFile`
@@ -41,11 +46,15 @@ npm run typecheck  # tsc --noEmit
 ```
 src/
   index.css          design tokens (@theme) + base styles: start here
-  App.tsx            section composition
+  App.tsx            section composition + search state
   components/
     ui.tsx           Container, Divider, SectionHeading, Card, Tag, buttons
     icons.tsx        SVGs ported from Figma; currentColor, size prop
+    SearchBar.tsx    nav search field + the results summary that replaces the hero
     Nav / Hero / Projects / WorkHistory / About / Footer / ResumeModal
+  lib/
+    search.ts        the search index: the only place that decides what is findable
+    usePrefersReducedMotion.ts
   data/              profile, experience, projects, education, skills, leadership
 public/documents/     resume PDF
 public/images/        hero portrait

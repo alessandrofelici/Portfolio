@@ -56,3 +56,24 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
 ]
+
+/**
+ * Skills paraded in the nav search placeholder, in cycle order.
+ *
+ * A curated subset rather than every item above: the placeholder is an
+ * invitation, not an index, and cycling all 38 would take a minute and a half
+ * to loop. Keep every entry present in `skillGroups`, so the hint never
+ * advertises a search that comes back empty.
+ */
+export const searchHints: string[] = [
+  'React',
+  'TypeScript',
+  'Terraform',
+  'Python',
+  'AWS',
+  'PyTorch',
+  'Kubernetes',
+  'Firebase',
+  'Next.js',
+  'MLflow',
+]

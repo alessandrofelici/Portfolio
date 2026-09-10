@@ -2,6 +2,7 @@
  * Inline icons, ported verbatim from the Figma Make source.
  * All use `currentColor` so they inherit text color from their container.
  */
+import { useId } from 'react'
 
 export const ExternalIcon = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -43,3 +44,46 @@ export const EmailIcon = ({ size = 20 }: { size?: number }) => (
     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
   </svg>
 )
+
+/**
+ * The nav search affordance: "SEARCH SKILLS" set around a slowly turning ring.
+ *
+ * Geometry is from the Make source and is load-bearing: the path is one full
+ * circle of radius 25 centered at (30,30), so its circumference is 157.08px.
+ * `textLength` stretches the label to fill exactly that, and the trailing dots
+ * pad whatever gap the words leave, which is what makes the ring read as
+ * continuous rather than as text with a bald patch. Changing the label means
+ * re-balancing the dots.
+ *
+ * The viewBox is inset by 4 units on every side, which the Make source's plain
+ * `0 0 60 60` was not. Glyphs sit outside the path they follow, so at r=25 plus
+ * a cap height the letters reach the 60-unit edge exactly and get shaved off at
+ * the top of the ring. Padding the box rather than shrinking the radius keeps
+ * the 157.08 circumference — and so the label's fit — correct.
+ *
+ * Decorative: the input beside it carries the accessible name.
+ */
+export const SearchRingIcon = ({ size = 34 }: { size?: number }) => {
+  // The <defs> path is referenced by id, so two rings on one page would collide.
+  const pathId = useId()
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="-4 -4 68 68"
+      fill="none"
+      aria-hidden="true"
+      className="motion-safe:animate-search-ring"
+    >
+      <defs>
+        <path id={pathId} d="M30,30 m-25,0 a25,25 0 1,1 50,0 a25,25 0 1,1-50,0" />
+      </defs>
+      <text fontSize="7" fill="currentColor">
+        <textPath href={`#${pathId}`} textLength="157.08" lengthAdjust="spacing">
+          SEARCH SKILLS · · · · · · · · · ·
+        </textPath>
+      </text>
+    </svg>
+  )
+}

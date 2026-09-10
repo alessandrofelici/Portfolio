@@ -61,8 +61,57 @@
 
   /* --- Geometry ----------------------------------------------------------
    * The design is deliberately near-square: one 2px radius everywhere.
+   *
+   * `radius-pill` is the single exception, and it exists for exactly one
+   * element: the nav search field. See DESIGN.md § 6.
    */
   --radius-sharp: 2px;
+  --radius-pill: 999px;
+
+  /* --- Motion ------------------------------------------------------------
+   * Ported from the Make source's search bar. These are the only keyframe
+   * animations in the system; everything else is a transition on transform or
+   * opacity. All three are gated behind `motion-safe:` at the call site.
+   *
+   * search-ring   the "SEARCH SKILLS" ring turning under the search field
+   * hint-in/out   the split-flap flip of the cycling skill placeholder
+   */
+  --animate-search-ring: search-ring 12s linear infinite;
+  --animate-hint-in: hint-in 0.36s cubic-bezier(0, 0, 0.6, 1) forwards;
+  --animate-hint-out: hint-out 0.32s cubic-bezier(0.4, 0, 1, 1) forwards;
+
+  @keyframes search-ring {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* The perspective lives in the transform itself rather than on a parent, so
+     the flip works without the container establishing a 3D context. */
+  @keyframes hint-in {
+    from {
+      transform: perspective(200px) rotateX(-88deg);
+      opacity: 0;
+    }
+    to {
+      transform: perspective(200px) rotateX(0deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes hint-out {
+    from {
+      transform: perspective(200px) rotateX(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: perspective(200px) rotateX(88deg);
+      opacity: 0;
+    }
+  }
 }
 
 @layer base {
