@@ -53,7 +53,7 @@ export const jobs: Job[] = [
     period: 'Dec. 2025 – May 2026',
     location: 'Remote',
     summary:
-      'Built Google and Microsoft Entra OAuth flows from scratch in a Django backend: no third-party auth libraries: plus a hackathon management API and an admin document dashboard, all shipped into a production Django and Next.js platform.',
+      'Built a hackathon management backend with full CRUD, user registration, project submission, and deadline enforcement, validating every edge case with Postman. Led development and testing of over 100 features in an Employee Resource Management program through an AI-assisted production cycle.',
     highlights: [
       'Implemented Google and Microsoft Entra OAuth authentication flows in a Django backend from scratch without third-party libraries, handling token verification, cross-window messaging, and role-based registration paths, enabling secure login across multiple user roles in production.',
       'Built a hackathon management backend with full CRUD, user registration, project submission, and deadline enforcement, validating every edge case with Postman.',
@@ -61,7 +61,7 @@ export const jobs: Job[] = [
       'Diagnosed and resolved AWS deployment failures: ECR migration, corrupted storage, and K12 platform deployment issues across dev and production: restoring platform stability.',
       'Conducted multi-account user testing on a K12 ERP platform across time and attendance, onboarding, and OIDC login modules, directing an AI coding agent to implement and patch features and validating outputs through manual testing and branch review.',
     ],
-    stack: ['Django', 'Next.js', 'Python', 'OAuth / OIDC', 'AWS', 'Postman'],
+    stack: ['Django', 'Next.js', 'Python', 'OAuth', 'Postman'],
   },
   {
     role: 'Software Engineering Intern',
