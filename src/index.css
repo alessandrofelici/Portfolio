@@ -80,16 +80,21 @@
   --radius-pill: 999px;
 
   /* --- Motion ------------------------------------------------------------
-   * Ported from the Make source's search bar. These are the only keyframe
-   * animations in the system; everything else is a transition on transform or
-   * opacity. All three are gated behind `motion-safe:` at the call site.
+   * search-ring and hint-in/out are ported from the Make source's search bar.
+   * drop-in is the /socials page load. These are the only keyframe animations in
+   * the system; everything else is a transition on transform or opacity. All are
+   * gated behind `motion-safe:` at the call site.
    *
    * search-ring   the "SEARCH SKILLS" ring turning under the search field
    * hint-in/out   the split-flap flip of the cycling skill placeholder
+   * drop-in       elements dropping into place on /socials, staggered inline
    */
   --animate-search-ring: search-ring 12s linear infinite;
   --animate-hint-in: hint-in 0.36s cubic-bezier(0, 0, 0.6, 1) forwards;
   --animate-hint-out: hint-out 0.32s cubic-bezier(0.4, 0, 1, 1) forwards;
+  /* `backwards` holds the start frame through the stagger delay, then lets go,
+     so a finished element carries no transform that could fight a hover. */
+  --animate-drop-in: drop-in 0.3s cubic-bezier(0, 0, 0.6, 1) backwards;
 
   @keyframes search-ring {
     from {
@@ -97,6 +102,17 @@
     }
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  @keyframes drop-in {
+    from {
+      transform: translateY(-12px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
     }
   }
 

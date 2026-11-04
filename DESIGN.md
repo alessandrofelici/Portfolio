@@ -153,11 +153,11 @@ opacity change:
 - `active:scale-95`: primary button press
 - `transition-transform duration-200 hover:scale-110`: company logo grow
 
-Nothing animates color, size, or layout. No entrance animations, no scroll-triggered reveals,
-no parallax. Don't add them.
+Nothing animates color, size, or layout. No scroll-triggered reveals, no parallax. Don't add
+them. There are no entrance animations either, apart from the `/socials` page load described below.
 
-Separately, the **search field** carries the only three keyframe animations in the system, all
-ported from the Figma source and all tokenized in `@theme`:
+Separately, the **search field** carries three keyframe animations, ported from the Figma source
+and tokenized in `@theme`:
 
 | Token | Utility | What |
 |---|---|---|
@@ -170,6 +170,11 @@ of the system forbids. They are confined to the search field, and **every one is
 `motion-safe:`**, with the JS cycle timer switched off under `prefers-reduced-motion` too, so
 the whole bar goes still. Any new keyframe animation needs the same treatment or it does not
 belong here.
+
+The **`/socials` page** has the one entrance animation, requested for that page only. Its icon,
+title, card, and buttons drop in once on load, staggered 50ms apart, with each taking 0.3s. It uses
+`animate-drop-in` (`--animate-drop-in`), applied through `motion-safe:`. Keep it brief, and don't
+carry it over to the portfolio page.
 
 ---
 
@@ -333,7 +338,7 @@ don't "fix" them back.
    title and nothing else.
 6. **Content goes in `src/data/`**, sourced from `~/resume/sections/`.
 7. **No new motion** beyond the moves in § 3. Keyframe animation is confined to the search
-   field, and anything ambient must be gated behind `motion-safe:`.
+   field and the `/socials` page load, and all of it must be gated behind `motion-safe:`.
 8. **Borders are 1px `border-line`. Shadows do not exist** in this system.
 9. When pulling from Figma again, re-read the Make source files (§ 1) rather than guessing:
    and update this document if the tokens moved.
