@@ -62,3 +62,6 @@ public/documents/     resume PDF
 public/images/        hero portrait
 public/fonts/         self-hosted Libron + its license
 ```
+
+`/socials` is picked by path in `main.tsx`, not by a file on disk. In production it only loads
+because `vercel.json` rewrites it to `index.html`, so any new client-side path needs a rewrite too.

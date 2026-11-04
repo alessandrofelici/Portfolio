@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/socials", "destination": "/index.html" },
+    { "source": "/socials/", "destination": "/index.html" }
+  ]
+}
