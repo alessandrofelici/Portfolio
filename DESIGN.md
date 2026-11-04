@@ -185,7 +185,7 @@ class strings.** If you need a variant, extend the primitive rather than copying
 <Card>                 // paper surface, 1px line border, hover lift (lift={false} for static containers)
 <Tag>TypeScript</Tag>  // cream-dark chip
 <PrimaryButton>        // solid yellow: at most one per view
-<GhostLink>            // outlined link on cream
+<GhostLink>            // outlined link on cream (lift for the card lift instead of the fade)
 <GhostButton>          // outlined button on cream, for real actions
 ```
 

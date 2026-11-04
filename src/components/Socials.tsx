@@ -24,6 +24,7 @@ export function Socials() {
             {socials.map(({ name, tag, href, icon: Icon }) => (
               <li key={name}>
                 <GhostLink
+                  lift
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
