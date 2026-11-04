@@ -172,7 +172,7 @@ the whole bar goes still. Any new keyframe animation needs the same treatment or
 belong here.
 
 The **`/socials` page** has the one entrance animation, requested for that page only. It plays
-once on load and is kept under a second. The icon drops in over 0.3s. Once it lands, the title types
+once on load and takes about a second. The icon drops in over 0.3s. Once it lands, the title types
 in at 35ms a letter while the card and buttons drop in, 50ms apart. It uses `animate-drop-in` and
 `animate-type-in` (`--animate-drop-in`, `--animate-type-in`), both applied through `motion-safe:`.
 Keep it brief, and don't carry it over to the portfolio page.
@@ -217,7 +217,7 @@ Raw equivalents, for reference:
 ### Icons
 
 `src/components/icons.tsx` holds `ExternalIcon`, `GithubIcon`, `LinkedinIcon`, `EmailIcon`:
-ported verbatim from the Figma source. `InstagramIcon` and `SpotifyIcon` come from
+ported verbatim from the Figma source. `InstagramIcon`, `SpotifyIcon`, `SubstackIcon`, `StravaIcon`, `LetterboxdIcon`, and `DiscordIcon` come from
 [Simple Icons](https://simpleicons.org) (CC0). They all paint with `currentColor` and accept a `size`
 prop, so brand icons stay ink rather than bringing in brand colors. **Do not hand-author new SVG paths.** If a new icon is needed, export it from Figma or
 pull it from a licensed set, then add it to this file with the same `currentColor` convention.

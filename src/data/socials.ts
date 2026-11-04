@@ -1,12 +1,18 @@
 import type { ComponentType } from 'react'
-import { GithubIcon, InstagramIcon, SpotifyIcon } from '../components/icons'
+import {
+  DiscordIcon,
+  GithubIcon,
+  InstagramIcon,
+  LetterboxdIcon,
+  LinkedinIcon,
+  SpotifyIcon,
+  StravaIcon,
+  SubstackIcon,
+} from '../components/icons'
 import { profile } from './profile'
 
 export type Social = {
-  /** Platform name. Not displayed: it gives the link its accessible name. */
   name: string
-  /** The handle shown on the button. */
-  tag: string
   href: string
   icon: ComponentType<{ size?: number }>
 }
@@ -18,10 +24,37 @@ export const socialsPage = {
   icon: '/images/Orange.png',
 }
 
-// SAMPLE: Instagram and Spotify have placeholder tags and point at the sites'
-// home pages until the real profiles are chosen.
 export const socials: Social[] = [
-  { name: 'Instagram', tag: '@instagram-tag', href: 'https://www.instagram.com/', icon: InstagramIcon },
-  { name: 'Spotify', tag: '@spotify-tag', href: 'https://open.spotify.com/', icon: SpotifyIcon },
-  { name: 'GitHub', tag: '@alessandrofelici', href: profile.github, icon: GithubIcon },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/alessandrofeliciii/',
+    icon: InstagramIcon,
+  },
+  {
+    name: 'Spotify',
+    href: 'https://open.spotify.com/user/31ep2x5rs6bsp5gkma33kkukckai',
+    icon: SpotifyIcon,
+  },
+  { name: 'GitHub', href: profile.github, icon: GithubIcon },
+  {
+    name: 'Strava',
+    href: 'https://www.strava.com/athletes/122357926',
+    icon: StravaIcon,
+  },
+  {
+    name: 'Substack',
+    href: 'https://substack.com/@alessandrofelici',
+    icon: SubstackIcon,
+  },
+  {
+    name: 'Letterboxd',
+    href: 'https://letterboxd.com/alessandrofel/',
+    icon: LetterboxdIcon,
+  },
+  { name: 'LinkedIn', href: profile.linkedin, icon: LinkedinIcon },
+  {
+    name: 'Discord',
+    href: 'https://discord.com/users/402245812824047616',
+    icon: DiscordIcon,
+  },
 ]
