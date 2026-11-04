@@ -84,10 +84,17 @@ is set in `index.html`.
 |---|---|---|
 | `--font-display` | `font-display` | `'Fraunces', Georgia, serif` |
 | `--font-body` | `font-body` | `'Work Sans', system-ui, sans-serif` |
+| `--font-libron` | `font-libron` | `'Libron', Georgia, serif` |
 
 **Fraunces is for display only**: the hero name, section headings, card titles, the resume name.
 Everything else is Work Sans. Fraunces is a variable serif; the italic cut is used deliberately
 once, on the hero surname.
+
+**Libron is the single sanctioned exception, and it exists for exactly one element:** the
+`/socials` page title. It is self-hosted from `public/fonts/` because it is not on Google Fonts.
+Only the Regular weight ships, unmodified from the official release: "Libron" is a Reserved Font
+Name under its OFL license, so a subset or converted copy could not keep the name. Its license
+file sits beside it and must stay there.
 
 | Token | Utility | Size | Line height | Used by |
 |---|---|---|---|---|
@@ -146,11 +153,11 @@ opacity change:
 - `active:scale-95`: primary button press
 - `transition-transform duration-200 hover:scale-110`: company logo grow
 
-Nothing animates color, size, or layout. No entrance animations, no scroll-triggered reveals,
-no parallax. Don't add them.
+Nothing animates color, size, or layout. No scroll-triggered reveals, no parallax. Don't add
+them. There are no entrance animations either, apart from the `/socials` page load described below.
 
-Separately, the **search field** carries the only three keyframe animations in the system, all
-ported from the Figma source and all tokenized in `@theme`:
+Separately, the **search field** carries three keyframe animations, ported from the Figma source
+and tokenized in `@theme`:
 
 | Token | Utility | What |
 |---|---|---|
@@ -164,6 +171,12 @@ of the system forbids. They are confined to the search field, and **every one is
 the whole bar goes still. Any new keyframe animation needs the same treatment or it does not
 belong here.
 
+The **`/socials` page** has the one entrance animation, requested for that page only. It plays
+once on load and takes about a second. The icon drops in over 0.3s. Once it lands, the title types
+in at 35ms a letter while the card and buttons drop in, 50ms apart. It uses `animate-drop-in` and
+`animate-type-in` (`--animate-drop-in`, `--animate-type-in`), both applied through `motion-safe:`.
+Keep it brief, and don't carry it over to the portfolio page.
+
 ---
 
 ## 4. Component recipes
@@ -175,10 +188,10 @@ class strings.** If you need a variant, extend the primitive rather than copying
 <Container>            // page gutter + max-width
 <Divider />            // 1px section rule
 <SectionHeading title="Projects" note="Hackathon builds & personal work" />
-<Card>                 // paper surface, 1px line border, hover lift
+<Card>                 // paper surface, 1px line border, hover lift (lift={false} for static containers)
 <Tag>TypeScript</Tag>  // cream-dark chip
 <PrimaryButton>        // solid yellow: at most one per view
-<GhostLink>            // outlined link on cream
+<GhostLink>            // outlined link on cream (lift for the card lift instead of the fade)
 <GhostButton>          // outlined button on cream, for real actions
 ```
 
@@ -193,7 +206,7 @@ Raw equivalents, for reference:
 
 | Recipe | Classes |
 |---|---|
-| Card | `rounded-sharp border border-line bg-paper p-6 transition-transform duration-200 hover:-translate-y-0.5` |
+| Card | `rounded-sharp border border-line bg-paper p-6 transition-transform duration-200 hover:-translate-y-0.5` (the transition and hover classes drop with `lift={false}`) |
 | Tag | `rounded-sharp bg-cream-dark px-2 py-0.5 text-xs font-medium text-ink-soft` |
 | Primary button | `rounded-sharp bg-yellow px-4 py-2 text-sm font-semibold text-ink hover:opacity-90 active:scale-95` |
 | Ghost link | `flex items-center gap-2 rounded-sharp border border-line px-4 py-2.5 text-sm font-medium text-ink hover:opacity-80` |
@@ -204,8 +217,9 @@ Raw equivalents, for reference:
 ### Icons
 
 `src/components/icons.tsx` holds `ExternalIcon`, `GithubIcon`, `LinkedinIcon`, `EmailIcon`:
-ported verbatim from the Figma source. They all paint with `currentColor` and accept a `size`
-prop. **Do not hand-author new SVG paths.** If a new icon is needed, export it from Figma or
+ported verbatim from the Figma source. `InstagramIcon`, `SpotifyIcon`, `SubstackIcon`, `StravaIcon`, `LetterboxdIcon`, and `DiscordIcon` come from
+[Simple Icons](https://simpleicons.org) (CC0). They all paint with `currentColor` and accept a `size`
+prop, so brand icons stay ink rather than bringing in brand colors. **Do not hand-author new SVG paths.** If a new icon is needed, export it from Figma or
 pull it from a licensed set, then add it to this file with the same `currentColor` convention.
 
 ---
@@ -230,6 +244,7 @@ one piece of non-component logic — the search index — lives in `src/lib/`:
 | `education.ts` | Degree, GPA, coursework | `sections/education.md` |
 | `skills.ts` | Skill groups | `sections/technical-skills.md` |
 | `leadership.ts` | Organizations + volunteering | `sections/organizations.md`, `volunteering.md` |
+| `socials.ts` | The `/socials` page: title, icon, links. Not in the search index | None |
 
 Two conventions worth knowing:
 
@@ -261,7 +276,9 @@ keep it small and keep full-resolution originals out of it.
 | `public/documents/Alessandro_Felici_Resume.pdf` | `/documents/…` | `profile.resumeFile` |
 | `public/documents/CSE-260-Honors-Project-Report.pdf` | `/documents/…` | `Project.paper` in `projects.ts` |
 | `public/images/SanMarinoHeadshotCropped.jpg` | `/images/…` | `profile.portrait` |
-| `public/images/Orange.png` | `/images/…` | `index.html` favicon + apple-touch-icon |
+| `public/images/Orange.png` | `/images/…` | `index.html` favicon + apple-touch-icon, `socialsPage.icon` |
+| `public/fonts/Libron-Regular.woff2` | `/fonts/…` | `@font-face` in `src/index.css` |
+| `public/fonts/Libron-LICENSE.txt` | `/fonts/…` | Nothing: ships with the font, as the OFL requires |
 | `public/images/{aps,alchemy,Auto-Owners}.png` | `/images/…` | `Job.logo` in `experience.ts` |
 
 **Keep asset filenames URL-safe** (no spaces, no punctuation beyond `-` and `_`): these become
@@ -272,9 +289,9 @@ Company logos are square (200x200), rendered at 48px in the Work History cards. 
 and a logo without a LinkedIn URL renders inert rather than as a link. Never add a placeholder
 logo to fill the slot.
 
-The favicon is an orange, 256x256. It is the one place an orange appears: it reads as a
-personal mark rather than UI chrome, so it sits outside the single-accent palette rule in § 3.
-Don't pull its orange into the interface.
+The favicon is an orange, 256x256, and the `/socials` page repeats it as its icon. Those are the
+only two places an orange appears: it reads as a personal mark rather than UI chrome, so it sits
+outside the single-accent palette rule in § 3. Don't pull its orange into the interface.
 
 The resume PDF is reached from exactly two places, both through `profile.resumeFile`: the
 `resume.pdf` link beside the Work History heading, and the Download button in the resume modal.
@@ -318,10 +335,11 @@ don't "fix" them back.
 2. **One radius.** `rounded-sharp` or nothing: `rounded-pill` is spoken for by the search field.
 3. **One accent.** Yellow, used sparingly. No second accent hue, no gradients.
 4. **Reuse `src/components/ui.tsx`.** New card-like surface? Compose `<Card>`.
-5. **Fraunces for display only.** Body text is always Work Sans.
+5. **Fraunces for display only.** Body text is always Work Sans. Libron is for the `/socials`
+   title and nothing else.
 6. **Content goes in `src/data/`**, sourced from `~/resume/sections/`.
 7. **No new motion** beyond the moves in § 3. Keyframe animation is confined to the search
-   field, and anything ambient must be gated behind `motion-safe:`.
+   field and the `/socials` page load, and all of it must be gated behind `motion-safe:`.
 8. **Borders are 1px `border-line`. Shadows do not exist** in this system.
 9. When pulling from Figma again, re-read the Make source files (§ 1) rather than guessing:
    and update this document if the tokens moved.

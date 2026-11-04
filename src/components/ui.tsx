@@ -54,17 +54,22 @@ export function Tag({
   )
 }
 
-/** Raised paper surface with a hairline border and a subtle lift on hover. */
+/**
+ * Raised paper surface with a hairline border and a subtle lift on hover.
+ * Pass `lift={false}` for a static container, where the lift would imply a click.
+ */
 export function Card({
   children,
   className = '',
+  lift = true,
 }: {
   children: ReactNode
   className?: string
+  lift?: boolean
 }) {
   return (
     <div
-      className={`rounded-sharp border border-line bg-paper p-6 transition-transform duration-200 hover:-translate-y-0.5 ${className}`}
+      className={`rounded-sharp border border-line bg-paper p-6 ${lift ? 'transition-transform duration-200 hover:-translate-y-0.5' : ''} ${className}`}
     >
       {children}
     </div>
@@ -103,15 +108,23 @@ export function GhostButton({
   )
 }
 
-/** Outlined link/button on the cream page background. */
+/**
+ * Outlined link/button on the cream page background. Fades on hover by default;
+ * `lift` swaps that for the card lift.
+ */
 export function GhostLink({
   children,
   className = '',
+  lift = false,
   ...props
-}: AnchorHTMLAttributes<HTMLAnchorElement>) {
+}: AnchorHTMLAttributes<HTMLAnchorElement> & { lift?: boolean }) {
+  const hover = lift
+    ? 'transition-transform duration-200 hover:-translate-y-0.5'
+    : 'transition-opacity hover:opacity-80'
+
   return (
     <a
-      className={`flex items-center gap-2 rounded-sharp border border-line px-4 py-2.5 text-sm font-medium text-ink transition-opacity hover:opacity-80 ${className}`}
+      className={`flex items-center gap-2 rounded-sharp border border-line px-4 py-2.5 text-sm font-medium text-ink ${hover} ${className}`}
       {...props}
     >
       {children}

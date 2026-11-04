@@ -11,7 +11,8 @@ Figma source of truth, and the rules that keep the visual system coherent. The s
   (`bg-cream`, `text-ink-soft`, `border-line`, `font-display`, `rounded-sharp`, …)
 - One radius (`rounded-sharp`, 2px), one accent (yellow), 1px borders, no shadows
 - Reuse the primitives in `src/components/ui.tsx` instead of re-deriving class strings
-- Fraunces (`font-display`) for headings only; Work Sans (`font-body`) for everything else
+- Fraunces (`font-display`) for headings only; Work Sans (`font-body`) for everything else.
+  The one exception is the `/socials` title, which uses Libron (`font-libron`)
 
 ## Content
 
@@ -52,10 +53,12 @@ src/
     icons.tsx        SVGs ported from Figma; currentColor, size prop
     SearchBar.tsx    nav search field + the results summary that replaces the hero
     Nav / Hero / Projects / WorkHistory / About / Footer / ResumeModal
+    Socials.tsx      the /socials link page, chosen by path in main.tsx
   lib/
     search.ts        the search index: the only place that decides what is findable
     usePrefersReducedMotion.ts
-  data/              profile, experience, projects, education, skills, leadership
+  data/              profile, experience, projects, education, skills, leadership, socials
 public/documents/     resume PDF
 public/images/        hero portrait
+public/fonts/         self-hosted Libron + its license
 ```
