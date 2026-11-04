@@ -54,17 +54,22 @@ export function Tag({
   )
 }
 
-/** Raised paper surface with a hairline border and a subtle lift on hover. */
+/**
+ * Raised paper surface with a hairline border and a subtle lift on hover.
+ * Pass `lift={false}` for a static container, where the lift would imply a click.
+ */
 export function Card({
   children,
   className = '',
+  lift = true,
 }: {
   children: ReactNode
   className?: string
+  lift?: boolean
 }) {
   return (
     <div
-      className={`rounded-sharp border border-line bg-paper p-6 transition-transform duration-200 hover:-translate-y-0.5 ${className}`}
+      className={`rounded-sharp border border-line bg-paper p-6 ${lift ? 'transition-transform duration-200 hover:-translate-y-0.5' : ''} ${className}`}
     >
       {children}
     </div>

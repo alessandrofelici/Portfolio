@@ -13,6 +13,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap');
 @import 'tailwindcss';
 
+/* Self-hosted: Libron is not on Google Fonts. License: public/fonts/Libron-LICENSE.txt */
+@font-face {
+  font-family: 'Libron';
+  src: url('/fonts/Libron-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   /* --- Surfaces ----------------------------------------------------------
    * cream       page background
@@ -45,6 +54,8 @@
   /* --- Type -------------------------------------------------------------- */
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Work Sans', system-ui, sans-serif;
+  /* The /socials title only. See DESIGN.md § 3. */
+  --font-libron: 'Libron', Georgia, serif;
 
   --text-display-xl: clamp(3.5rem, 7vw, 6rem);
   --text-display-xl--line-height: 0.95;
