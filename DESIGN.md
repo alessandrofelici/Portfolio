@@ -171,10 +171,11 @@ of the system forbids. They are confined to the search field, and **every one is
 the whole bar goes still. Any new keyframe animation needs the same treatment or it does not
 belong here.
 
-The **`/socials` page** has the one entrance animation, requested for that page only. Its icon,
-title, card, and buttons drop in once on load, staggered 50ms apart, with each taking 0.3s. It uses
-`animate-drop-in` (`--animate-drop-in`), applied through `motion-safe:`. Keep it brief, and don't
-carry it over to the portfolio page.
+The **`/socials` page** has the one entrance animation, requested for that page only. It plays
+once on load and is kept under a second. The icon drops in over 0.3s. Once it lands, the title types
+in at 35ms a letter while the card and buttons drop in, 50ms apart. It uses `animate-drop-in` and
+`animate-type-in` (`--animate-drop-in`, `--animate-type-in`), both applied through `motion-safe:`.
+Keep it brief, and don't carry it over to the portfolio page.
 
 ---
 

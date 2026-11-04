@@ -81,13 +81,14 @@
 
   /* --- Motion ------------------------------------------------------------
    * search-ring and hint-in/out are ported from the Make source's search bar.
-   * drop-in is the /socials page load. These are the only keyframe animations in
+   * drop-in and type-in are the /socials page load. These are the only keyframe animations in
    * the system; everything else is a transition on transform or opacity. All are
    * gated behind `motion-safe:` at the call site.
    *
    * search-ring   the "SEARCH SKILLS" ring turning under the search field
    * hint-in/out   the split-flap flip of the cycling skill placeholder
    * drop-in       elements dropping into place on /socials, staggered inline
+   * type-in       one letter of the /socials title appearing, staggered inline
    */
   --animate-search-ring: search-ring 12s linear infinite;
   --animate-hint-in: hint-in 0.36s cubic-bezier(0, 0, 0.6, 1) forwards;
@@ -95,6 +96,8 @@
   /* `backwards` holds the start frame through the stagger delay, then lets go,
      so a finished element carries no transform that could fight a hover. */
   --animate-drop-in: drop-in 0.3s cubic-bezier(0, 0, 0.6, 1) backwards;
+  /* Effectively instant: the look of typing comes from the per-letter delay. */
+  --animate-type-in: type-in 1ms linear backwards;
 
   @keyframes search-ring {
     from {
@@ -102,6 +105,15 @@
     }
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  @keyframes type-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 
