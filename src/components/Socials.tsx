@@ -21,11 +21,16 @@ export function Socials() {
 
         <Card lift={false} className="w-full">
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {socials.map(({ name, href, icon: Icon }) => (
+            {socials.map(({ name, tag, href, icon: Icon }) => (
               <li key={name}>
-                <GhostLink href={href} target="_blank" rel="noopener noreferrer">
+                <GhostLink
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${name}: ${tag}`}
+                >
                   <Icon size={24} />
-                  {name}
+                  <span className="min-w-0 truncate">{tag}</span>
                 </GhostLink>
               </li>
             ))}
