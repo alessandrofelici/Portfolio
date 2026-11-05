@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react'
 import {
+  BrawlStarsIcon,
   DiscordIcon,
   GithubIcon,
   InstagramIcon,
@@ -8,6 +9,7 @@ import {
   SpotifyIcon,
   StravaIcon,
   SubstackIcon,
+  TiktokIcon,
 } from '../components/icons'
 import { profile } from './profile'
 
@@ -29,6 +31,11 @@ export const socials: Social[] = [
     name: 'Instagram',
     href: 'https://www.instagram.com/alessandrofeliciii/',
     icon: InstagramIcon,
+  },
+  {
+    name: 'TikTok',
+    href: 'https://www.tiktok.com/@alessandrofelici605',
+    icon: TiktokIcon,
   },
   {
     name: 'Spotify',
@@ -56,5 +63,10 @@ export const socials: Social[] = [
     name: 'Discord',
     href: 'https://discord.com/users/402245812824047616',
     icon: DiscordIcon,
+  },
+  {
+    name: 'Brawl Stars',
+    href: 'https://link.brawlstars.com/invite/friend/en/?tag=829YGVC89',
+    icon: BrawlStarsIcon,
   },
 ]
