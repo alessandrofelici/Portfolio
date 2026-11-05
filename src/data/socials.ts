@@ -3,6 +3,7 @@ import {
   BrawlStarsIcon,
   DiscordIcon,
   GithubIcon,
+  GoodreadsIcon,
   InstagramIcon,
   LetterboxdIcon,
   LinkedinIcon,
@@ -57,6 +58,11 @@ export const socials: Social[] = [
     name: 'Letterboxd',
     href: 'https://letterboxd.com/alessandrofel/',
     icon: LetterboxdIcon,
+  },
+  {
+    name: 'Goodreads',
+    href: 'https://www.goodreads.com/user/show/206211859-alessandro-felici',
+    icon: GoodreadsIcon,
   },
   { name: 'LinkedIn', href: profile.linkedin, icon: LinkedinIcon },
   {
