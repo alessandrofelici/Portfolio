@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Analytics } from '@vercel/analytics/react'
 import App from './App'
 import { Socials } from './components/Socials'
 import './index.css'
@@ -8,5 +9,8 @@ import './index.css'
 const isSocials = window.location.pathname.replace(/\/+$/, '') === '/socials'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>{isSocials ? <Socials /> : <App />}</React.StrictMode>,
+  <React.StrictMode>
+    {isSocials ? <Socials /> : <App />}
+    <Analytics />
+  </React.StrictMode>,
 )
