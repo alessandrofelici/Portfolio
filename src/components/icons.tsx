@@ -1,7 +1,8 @@
 /**
  * Inline icons, ported verbatim from the Figma Make source, except the social
  * brand icons (Instagram, TikTok, Spotify, Substack, Strava, Letterboxd, Goodreads, Discord), which come from
- * Simple Icons (CC0), and Brawl Stars, which comes from Arcticons (see `BrawlStarsIcon`).
+ * Simple Icons (CC0), Brawl Stars, which comes from Arcticons (see `BrawlStarsIcon`), and
+ * Beli, which comes from Lucide (see `BeliIcon`).
  * All use `currentColor` so they inherit text color from their container.
  */
 import { useId } from 'react'
@@ -119,6 +120,29 @@ export const BrawlStarsIcon = ({ size = 20 }: { size?: number }) => (
     <path d="m19.9 17.86l2.321 4.02" />
     <circle cx="31.668" cy="29.186" r="5.112" />
     <path d="m30.305 20.647l-4.02 2.32" />
+  </svg>
+)
+
+/**
+ * "utensils" from Lucide (https://lucide.dev), ISC license. Stands in for Beli, which
+ * neither Simple Icons nor Arcticons draws. Lucide is outline-only, so like
+ * `BrawlStarsIcon` it strokes rather than fills.
+ */
+export const BeliIcon = ({ size = 20 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+    <path d="M7 2v20" />
+    <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
   </svg>
 )
 
