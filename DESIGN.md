@@ -219,7 +219,8 @@ Raw equivalents, for reference:
 `src/components/icons.tsx` holds `ExternalIcon`, `GithubIcon`, `LinkedinIcon`, `EmailIcon`:
 ported verbatim from the Figma source. `InstagramIcon`, `TiktokIcon`, `SpotifyIcon`, `SubstackIcon`, `StravaIcon`, `LetterboxdIcon`, `GoodreadsIcon`, and `DiscordIcon` come from
 [Simple Icons](https://simpleicons.org) (CC0). `BrawlStarsIcon` comes from
-[Arcticons](https://github.com/Arcticons-Team/Arcticons) (CC BY-SA 4.0, credited in the file) with its stroke thickened. They all paint with `currentColor` and accept a `size`
+[Arcticons](https://github.com/Arcticons-Team/Arcticons) (CC BY-SA 4.0, credited in the file) with its stroke thickened. `BeliIcon` is
+Lucide's `utensils` (ISC, credited in the file), since neither Simple Icons nor Arcticons has a Beli mark. They all paint with `currentColor` and accept a `size`
 prop, so brand icons stay ink rather than bringing in brand colors. **Do not hand-author new SVG paths.** If a new icon is needed, export it from Figma or
 pull it from a licensed set, then add it to this file with the same `currentColor` convention.
 

@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react'
 import {
+  BeliIcon,
   BrawlStarsIcon,
   DiscordIcon,
   GithubIcon,
@@ -63,6 +64,11 @@ export const socials: Social[] = [
     name: 'Goodreads',
     href: 'https://www.goodreads.com/user/show/206211859-alessandro-felici',
     icon: GoodreadsIcon,
+  },
+  {
+    name: 'Beli',
+    href: 'https://beliapp.co/profile/alessandrofelici',
+    icon: BeliIcon,
   },
   { name: 'LinkedIn', href: profile.linkedin, icon: LinkedinIcon },
   {
