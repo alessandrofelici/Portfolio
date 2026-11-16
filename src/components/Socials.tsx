@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { socials, socialsPage } from '../data/socials'
-import { Card, GhostLink } from './ui'
+import { Card, Container, GhostLink } from './ui'
 
 const DROP_IN = 'motion-safe:animate-drop-in'
 
@@ -11,14 +11,27 @@ const DROP_STAGGER_MS = 50
 
 const delay = (ms: number) => ({ animationDelay: `${ms}ms` })
 
-/** Link page at /socials. Stands alone, without the portfolio's nav or footer. */
+/**
+ * Link page at /socials. Stands alone, without the portfolio's nav or footer:
+ * its only way out is the Back link to the portfolio at `/`.
+ */
 export function Socials() {
   useEffect(() => {
     document.title = socialsPage.documentTitle
   }, [])
 
   return (
-    <div className="min-h-screen bg-cream font-body">
+    <div className="relative min-h-screen bg-cream font-body">
+      {/* Overlaid rather than stacked, so the centered column below keeps its
+          spacing. It clears the column's top padding even on a phone. Left out
+          of the entrance animation, which belongs to the page's own content. */}
+      <Container className="absolute inset-x-0 top-0 pt-6">
+        <GhostLink href="/" className="w-fit">
+          <span aria-hidden="true">&larr;</span>
+          Back
+        </GhostLink>
+      </Container>
+
       {/* The cap is what gives desktop its wide side margins; below it the
           column fills the page apart from the gutter. */}
       <main className="mx-auto flex w-full max-w-md flex-col items-center px-6 py-20">

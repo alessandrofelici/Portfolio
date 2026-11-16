@@ -202,6 +202,11 @@ competing with the hero for attention cost more than it gave. Search earns its s
 does something links cannot — narrow the page rather than jump around it. The monogram clears
 the query and scrolls to the top; a "Back to top" `GhostButton` closes the page in the footer.
 
+**`/socials` has no nav, only a way back.** A "← Back" `GhostLink` to `/` sits in the top-left
+corner, in the same `<Container>` gutter as the portfolio's nav. It is overlaid on the page
+rather than stacked above it, so the centered column keeps its spacing, and it stays still while
+the rest of the page drops in.
+
 Raw equivalents, for reference:
 
 | Recipe | Classes |
