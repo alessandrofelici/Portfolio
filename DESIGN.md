@@ -202,10 +202,13 @@ competing with the hero for attention cost more than it gave. Search earns its s
 does something links cannot — narrow the page rather than jump around it. The monogram clears
 the query and scrolls to the top; a "Back to top" `GhostButton` closes the page in the footer.
 
-**`/socials` has no nav, only a way back.** A "← Back" `GhostLink` to `/` sits in the top-left
-corner, in the same `<Container>` gutter as the portfolio's nav. It is overlaid on the page
-rather than stacked above it, so the centered column keeps its spacing, and it stays still while
-the rest of the page drops in.
+The footer's right side is a single "Socials" text link to `/socials`. The hero already carries
+the LinkedIn, GitHub, and Email buttons, so the footer points to the full list instead of
+repeating them as icons.
+
+**`/socials` has no nav, only a way back.** A "← Back to portfolio" link to `/` sits under the
+card. It is plain `text-ink-muted` text, not a `GhostLink`, so it reads as a quiet exit rather
+than one more entry in the list, and it drops in last in the page's entrance sequence.
 
 Raw equivalents, for reference:
 

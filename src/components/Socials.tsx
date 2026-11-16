@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { socials, socialsPage } from '../data/socials'
-import { Card, Container, GhostLink } from './ui'
+import { Card, GhostLink } from './ui'
 
 const DROP_IN = 'motion-safe:animate-drop-in'
 
@@ -13,7 +13,7 @@ const delay = (ms: number) => ({ animationDelay: `${ms}ms` })
 
 /**
  * Link page at /socials. Stands alone, without the portfolio's nav or footer:
- * its only way out is the Back link to the portfolio at `/`.
+ * its only way out is the muted "Back to portfolio" link under the card.
  */
 export function Socials() {
   useEffect(() => {
@@ -21,17 +21,7 @@ export function Socials() {
   }, [])
 
   return (
-    <div className="relative min-h-screen bg-cream font-body">
-      {/* Overlaid rather than stacked, so the centered column below keeps its
-          spacing. It clears the column's top padding even on a phone. Left out
-          of the entrance animation, which belongs to the page's own content. */}
-      <Container className="absolute inset-x-0 top-0 pt-6">
-        <GhostLink href="/" className="w-fit">
-          <span aria-hidden="true">&larr;</span>
-          Back
-        </GhostLink>
-      </Container>
-
+    <div className="min-h-screen bg-cream font-body">
       {/* The cap is what gives desktop its wide side margins; below it the
           column fills the page apart from the gutter. */}
       <main className="mx-auto flex w-full max-w-md flex-col items-center px-6 py-20">
@@ -86,6 +76,16 @@ export function Socials() {
             </ul>
           </Card>
         </div>
+
+        {/* Plain muted text rather than a ghost button, so it reads as a way
+            out and not as one more link in the list. It drops in last. */}
+        <a
+          href="/"
+          className={`mt-8 text-sm font-medium text-ink-muted transition-opacity hover:opacity-60 ${DROP_IN}`}
+          style={delay(ICON_LANDS_MS + (socials.length + 1) * DROP_STAGGER_MS)}
+        >
+          <span aria-hidden="true">&larr;</span> Back to portfolio
+        </a>
       </main>
     </div>
   )
